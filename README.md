@@ -1,7 +1,10 @@
-### Flux CD
+## Flux CD
+### Installation 
 - https://fluxcd.io/flux/installation/
 1. `curl -s https://fluxcd.io/install.sh | sudo bash`
 
+### Provisioning 
+1. `make provision` 
 2. Need to manually add repo creds for the argocd repos 
     - add the below to repo-creds.yaml and replace password and username
 ```yaml
@@ -19,5 +22,5 @@ stringData:
   password: my-password
   username: my-username
 ```
-    - run to apply `apply-argo-repo-creds`
+    - run to apply `make apply-argo-repo-creds`
 3. Port forward argocd to use it `kubectl port-forward svc/argocd-server -n argocd 8080:443`
