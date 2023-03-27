@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: argocd
 resources:
 - argocd.yaml
-patchesStrategicMerge: 
-- patch-argocd.yaml 

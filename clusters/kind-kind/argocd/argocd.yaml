@@ -33,3 +33,12 @@ spec:
       sourceRef:
         kind: GitRepository
         name: argocd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  type: LoadBalancer
+  
