@@ -19,5 +19,5 @@ stringData:
   password: my-password
   username: my-username
 ```
-    - run to apply git creds `kubectl apply -f repo-creds.yaml`
+    - run to apply `apply-argo-repo-creds`
 3. Port forward argocd to use it `kubectl port-forward svc/argocd-server -n argocd 8080:443`
