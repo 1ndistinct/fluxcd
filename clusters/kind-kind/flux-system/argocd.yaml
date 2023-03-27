@@ -19,7 +19,6 @@ spec:
     # include charts directory
     !/charts/
 ---
-
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -34,3 +33,40 @@ spec:
       sourceRef:
         kind: GitRepository
         name: argocd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+  name: argocd-server
+  namespace: argocd
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.96.53.113
+  clusterIPs:
+  - 10.96.53.113
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    nodePort: 30239
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: https
+    nodePort: 31139
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: argocd-server
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
