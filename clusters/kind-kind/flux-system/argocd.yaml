@@ -6,8 +6,8 @@ metadata:
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: angi-helloworld
-  namespace: angi
+  name: argocd
+  namespace: argocd
 spec:
   interval: 5m
   url: https://github.com/argoproj/argo-helm
@@ -33,4 +33,4 @@ spec:
       chart: charts/argo-cd
       sourceRef:
         kind: GitRepository
-        name: argo-cd
+        name: argocd
