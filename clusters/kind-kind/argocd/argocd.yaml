@@ -53,3 +53,16 @@ stringData:
   name: kind-kind
   server: https://kubernetes.default.svc
 ---
+apiVersion: v1
+stringData:
+  type: git
+  url: https://github.com/Wednesday-Vibes/local-development
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: local-development
+  namespace: argocd
+type: Opaque
