@@ -41,4 +41,15 @@ metadata:
   namespace: argocd
 spec:
   type: LoadBalancer
-  
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kind-kind
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+type: Opaque
+stringData:
+  name: kind-kind
+  server: https://kubernetes.default.svc
+---
