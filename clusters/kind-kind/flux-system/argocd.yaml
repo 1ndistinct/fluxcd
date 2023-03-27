@@ -4,10 +4,33 @@ metadata:
   name: argocd
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
+kind: GitRepository
+metadata:
+  name: angi-helloworld
+  namespace: angi
+spec:
+  interval: 5m
+  url: https://github.com/argoproj/argo-helm
+  ref:
+    branch: main
+  ignore: |-
+    # exclude all
+    /*
+    # include charts directory
+    !/charts/
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
 metadata:
   name: argocd
   namespace: argocd
 spec:
   interval: 1m
-  url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  releaseName: argocd
+  chart:
+    spec:
+      chart: charts/argo-cd
+      sourceRef:
+        kind: GitRepository
+        name: argo-cd
