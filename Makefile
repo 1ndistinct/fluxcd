@@ -8,12 +8,7 @@ provision:
 	flux bootstrap git \
 	--url=ssh://git@github.com/Wednesday-Vibes/fluxcd.git \
 	--branch=dev \
-	--path=clusters/kind-kind/base \
-	--private-key-file=/root/.ssh/id_ed25519
-	flux bootstrap git \
-	--url=ssh://git@github.com/Wednesday-Vibes/fluxcd.git \
-	--branch=dev \
-	--path=clusters/kind-kind/dependencies \
+	--path=clusters/kind-kind \
 	--private-key-file=/root/.ssh/id_ed25519
 
 argo-creds:
