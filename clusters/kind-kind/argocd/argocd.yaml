@@ -106,4 +106,3 @@ metadata:
   name: keycloak
   namespace: argocd
 type: Opaque
-
