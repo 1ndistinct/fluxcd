@@ -19,6 +19,8 @@ metadata:
   name: argo
   namespace: argocd
 spec:
+  dependsOn:
+    - name: argo
   interval: 5m
   path: "./dependencies"
   prune: true
