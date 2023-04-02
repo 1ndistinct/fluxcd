@@ -8,7 +8,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: grafana/loki
+      chart: loki
       version: '4.8.0'
       sourceRef:
         kind: HelmRepository
@@ -34,7 +34,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: grafana/promtail
+      chart: promtail
       version: '6.9.3'
       sourceRef:
         kind: HelmRepository
