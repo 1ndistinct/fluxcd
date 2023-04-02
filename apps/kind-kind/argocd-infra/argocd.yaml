@@ -23,10 +23,10 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: argocd
+  name: argocd-image-updater
   namespace: argocd
 spec:
-  releaseName: argocd
+  releaseName: argocd-image-updater
   interval: 1m
   chart:
     spec:
