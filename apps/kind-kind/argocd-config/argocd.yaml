@@ -1,4 +1,58 @@
 apiVersion: v1
+kind: Secret
+metadata:
+  name: kind-kind
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+type: Opaque
+stringData:
+  name: kind-kind
+  server: https://kubernetes.default.svc
+---
+apiVersion: v1
+stringData:
+  type: git
+  url: https://github.com/Wednesday-Vibes/local-development.git
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: local-development
+  namespace: argocd
+type: Opaque
+---
+apiVersion: v1
+stringData:
+  type: git
+  url: https://github.com/Wednesday-Vibes/vpn-frontend.git
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: vpn-frontend
+  namespace: argocd
+type: Opaque
+---
+apiVersion: v1
+stringData:
+  type: git
+  url: https://github.com/Wednesday-Vibes/keycloak.git
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: keycloak
+  namespace: argocd
+type: Opaque
+---
+apiVersion: v1
 stringData:
   type: git
   url: https://github.com/Wednesday-Vibes/topical.git
