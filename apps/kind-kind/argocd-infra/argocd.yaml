@@ -9,15 +9,16 @@ metadata:
   name: argocd
   namespace: argocd
 spec:
+  releaseName: argocd
   interval: 1m
   chart:
     spec:
       chart: argo-cd
-      version: '*'
+      version: '5.19.12'
       sourceRef:
         kind: HelmRepository
         name: argocd
-        namespace: argocd
+        namespace: flux-system
 ---
 apiVersion: v1
 kind: Service
