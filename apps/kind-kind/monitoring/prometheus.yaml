@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: prometheus-community/kube-prometheus-stack
-      version: '*'
+      version: '45.7.1'
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
