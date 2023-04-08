@@ -1,0 +1,10 @@
+
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: openvpn
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  url: https://charts.cloudposse.com/incubator/
+# https://artifacthub.io/packages/helm/cloudposse/openvpn
