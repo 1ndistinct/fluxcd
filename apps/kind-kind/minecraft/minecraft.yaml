@@ -22,11 +22,11 @@ spec:
   values:
     resources:
       requests:
-        memory: 2048M
+        memory: 4096M
         cpu: 2
     minecraftServer: 
       eula: true
-      memory: 2048M
+      memory: 4096M
     persistence:
       dataDir:
         enabled: true
