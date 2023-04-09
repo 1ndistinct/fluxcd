@@ -6,5 +6,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h0m0s
-  url: https://charts.cloudposse.com/incubator/
-# https://artifacthub.io/packages/helm/cloudposse/openvpn
+  url: https://charts.truecharts.org/
+# https://artifacthub.io/packages/helm/truecharts/wg-easy?modal=install
