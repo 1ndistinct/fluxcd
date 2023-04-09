@@ -5,7 +5,7 @@ SHELL:=/bin/bash
 
 
 provision:	
-	flux bootstrap git \
+	sudo flux bootstrap git \
 	--url=ssh://git@github.com/Wednesday-Vibes/fluxcd.git \
 	--branch=dev \
 	--path=clusters/kind-kind \
