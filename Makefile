@@ -5,11 +5,11 @@ SHELL:=/bin/bash
 
 
 provision:	
-	sudo flux bootstrap git \
+	flux bootstrap git \
 	--url=ssh://git@github.com/Wednesday-Vibes/fluxcd.git \
 	--branch=dev \
 	--path=clusters/kind-kind \
-	--private-key-file=/root/.ssh/id_ed25519
+	--private-key-file=/${HOME}/.ssh/id_ed25519
 
 apply-argo-repo-creds:
 	kubectl apply -f repo-creds.yaml
