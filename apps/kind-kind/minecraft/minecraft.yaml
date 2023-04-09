@@ -20,8 +20,13 @@ spec:
         name: minecraft
         namespace: flux-system
   values:
+    resources:
+      requests:
+        memory: 2048M
+        cpu: 2
     minecraftServer: 
       eula: true
+      memory: 2048M
     persistence:
       dataDir:
         enabled: true
