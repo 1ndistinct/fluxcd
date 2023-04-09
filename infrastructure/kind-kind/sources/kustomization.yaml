@@ -6,4 +6,4 @@ resources:
 - grafana.yaml
 - prometheus-community.yaml
 - minecraft.yaml
-- openvpn.yaml
+- wireguard.yaml
