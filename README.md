@@ -24,3 +24,7 @@ stringData:
 ```
     - run to apply `make apply-argo-repo-creds`
 3. Port forward argocd to use it `kubectl port-forward svc/argocd-server -n argocd 8080:443`
+
+## Charts
+- https://truecharts.org/charts/description_list#Stable
+
