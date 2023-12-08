@@ -18,7 +18,7 @@ metadata:
     argocd.argoproj.io/secret-type: repo-creds
 stringData:
   type: git
-  url: https://github.com/Wednesday-Vibes
+  url: https://github.com/1ndistinct
   password: my-password
   username: my-username
 ```

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 0m30s
-  path: "./infrastructure/kind-kind"
+  path: "./infrastructure/home"
   sourceRef:
     kind: GitRepository
     name: flux-system

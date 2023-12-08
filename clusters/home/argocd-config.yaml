@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: wireguard
+  name: argocd-config
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: infrastructure
-  path: "./apps/kind-kind/wireguard"
+    - name: argocd-infra
+  path: "./apps/home/argocd-config"
   sourceRef:
     kind: GitRepository
     name: flux-system
