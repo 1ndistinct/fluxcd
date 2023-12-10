@@ -31,10 +31,7 @@ spec:
         kind: HelmRepository
         name: runix-charts
         namespace: flux-system
-  values:
-    env:
-      email: pga@pga.com
-      password: postgres
+
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
