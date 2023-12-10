@@ -32,9 +32,8 @@ spec:
         name: runix-charts
         namespace: flux-system
     values:
-      env:
-        email: admin@admin.com
-        password: password
+      env.email: admin@admin.com
+      env.password: password
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
