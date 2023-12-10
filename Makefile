@@ -9,12 +9,7 @@ provision:
 	--private-key-file=/${HOME}/.ssh/id_ed25519
 
 get-admin-argo-creds:
-	bash -c " \
-	namespace=argocd; \ 
-	secret=argocd-initial-admin-secret; \
-    secret=$(kubectl get secret -n $namespace $secret -o json); \
-	password_key=password; \
-	bash ./scripts/get_creds.sh"
+	bash ./scripts/get_creds.sh
 
 
 apply-argo-repo-creds:

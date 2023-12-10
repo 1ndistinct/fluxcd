@@ -82,13 +82,13 @@ type: Opaque
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: dev
+  name: apps
   namespace: argocd
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Dev project
+  description: Deployed Apps
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   # - https://github.com/1ndistinct/topical.git
@@ -99,10 +99,9 @@ spec:
   # - https://github.com/1ndistinct/todo-ui.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
-  - namespace: dev
+  - namespace: apps
     server: https://kubernetes.default.svc
-  - namespace: default
-    server: https://kubernetes.default.svc
+
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
   - group: '*'
