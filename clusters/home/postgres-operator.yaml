@@ -7,7 +7,7 @@ spec:
   interval: 0m30s
   dependsOn:
     - name: infrastructure
-  path: "./apps/home/postgres-operator"
+  path: "./apps/home/apps"
   sourceRef:
     kind: GitRepository
     name: flux-system
