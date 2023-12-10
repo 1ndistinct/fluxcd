@@ -6,7 +6,7 @@
 ### Provisioning 
 1. `make provision` 
 2. Need to manually add repo creds for the argocd repos 
-    - add the below to repo-creds.yaml and replace password and username
+    - add the below to repo-creds.yaml and replace password and username with your git token 
 ```yaml
 kubectl apply -f <<EOF
 apiVersion: v1
