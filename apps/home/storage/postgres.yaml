@@ -33,8 +33,8 @@ spec:
         namespace: flux-system
   values:
     env:
-      email: admin
-      password: password
+      email: pga@pga.com
+      password: postgres
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
