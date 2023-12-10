@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: postgres-operator  
-  namespace: monitoring
+  namespace: storage
 spec:
   releaseName: postgres-operator
   interval: 1m
@@ -33,27 +33,3 @@ spec:
 #         name: postgres-operator-ui-charts
 #         namespace: flux-system
 ---
-kind: postgresql
-apiVersion: acid.zalan.do/v1
-
-metadata:
-  name: postgres
-  namespace: apps
-  labels:
-    team: apps
-
-spec:
-  teamId: apps
-  postgresql:
-    version: "15"
-  numberOfInstances: 1
-  volume:
-    size: 10Gi
-    
-  resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
-    limits:
-      cpu: 500m
-      memory: 500Mi
