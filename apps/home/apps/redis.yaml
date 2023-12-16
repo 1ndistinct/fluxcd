@@ -14,5 +14,5 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
-    values:
-      architecture: standalone 
+  values:
+    architecture: standalone 
