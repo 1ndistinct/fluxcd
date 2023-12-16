@@ -8,3 +8,4 @@ resources:
 - wireguard.yaml
 - postgres-operator.yaml
 - redis.yaml
+- pypi-server.yaml
