@@ -14,7 +14,9 @@ spec:
   numberOfInstances: 1
   volume:
     size: 10Gi
-    
+    storageClass: microk8s-hostpath
+  allowedSourceRanges:
+    - 0.0.0.0/0
   resources:
     requests:
       cpu: 100m
