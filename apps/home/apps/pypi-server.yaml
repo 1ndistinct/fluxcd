@@ -15,4 +15,7 @@ spec:
         name: cgsimmons-charts
         namespace: flux-system
   values:
-    architecture: standalone 
+    autoscaling:
+      minReplicas: 1
+    persistence:
+      storageClassName: microk8s-hostpath
