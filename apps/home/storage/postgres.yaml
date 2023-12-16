@@ -17,20 +17,20 @@ spec:
 
       
 ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: postgres-operator-ui  
-#   namespace: apps
-# spec:
-#   releaseName: postgres-operator-ui
-#   interval: 1m
-#   chart:
-#     spec:
-#       chart: postgres-operator-ui
-#       version: '1.10.1'
-#       sourceRef:
-#         kind: HelmRepository
-#         name: postgres-operator-ui-charts
-#         namespace: flux-system
-# ---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: postgres-operator-ui  
+  namespace: apps
+spec:
+  releaseName: postgres-operator-ui
+  interval: 1m
+  chart:
+    spec:
+      chart: postgres-operator-ui
+      version: '1.10.1'
+      sourceRef:
+        kind: HelmRepository
+        name: postgres-operator-ui-charts
+        namespace: flux-system
+---
