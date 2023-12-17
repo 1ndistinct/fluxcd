@@ -51,6 +51,9 @@ spec:
     spec:
       containers:
         - image: linuxserver/wireguard:latest
+          volumeMounts:
+            - mountPath: /etc/wireguard
+            name: wireguard-pv
           name: wireguard
           envFrom:
             - secretRef:
@@ -64,6 +67,9 @@ spec:
               - SYS_MODULE
             privileged: true
         - image: ngoduykhanh/wireguard-ui:latest
+          volumeMounts:
+            - mountPath: /etc/wireguard
+            name: wireguard-pv
           name: wireguard-ui
           envFrom:
             - secretRef:
@@ -76,7 +82,10 @@ spec:
               - NET_ADMIN
               - SYS_MODULE
             privileged: true
-
+      volumes:
+      - name: wireguard-pv
+        persistentVolumeClaim:
+          claimName: wireguard-pv
 ---
 apiVersion: v1
 kind: Service
@@ -105,10 +114,23 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: wireguard    
+  name: wireguard
+  namespace: wireguard
 type: Opaque
 data:
   WGUI_MANAGE_RESTART: dHJ1ZQ==
   WGUI_MANAGE_START: dHJ1ZQ==
   WGUI_PASSWORD: cGFzc3dvcmQ=
   WGUI_USERNAME: YWRtaW4=
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wireguard-pvc
+spec:
+  storageClassName: microk8s-hostpath
+  accessModes: 
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
