@@ -19,6 +19,14 @@ spec:
         kind: HelmRepository
         name: argocd
         namespace: flux-system
+  install:
+    remediation:
+      retries: 1
+  upgrade:
+    timeout: 30s
+    remediation:
+      retries: 1
+      strategy: rollback
   values:
     server:
       service:
