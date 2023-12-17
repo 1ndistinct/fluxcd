@@ -33,5 +33,5 @@ spec:
         type: NodePort
         servicePortHttps: 443
         servicePortHttp: 80
-        nodePortHttp: 9000
-        nodePortHttps: 9001
+        nodePortHttp: 30000
+        nodePortHttps: 30001
