@@ -1,3 +1,5 @@
+### https://unix.stackexchange.com/questions/607004/cant-access-services-on-server-using-its-public-ip-after-starting-wireguard
+### How to get internet access
 apiVersion: v1
 kind: Namespace
 metadata:
