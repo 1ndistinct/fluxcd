@@ -42,6 +42,6 @@ spec:
         namespace: flux-system
   values:
     service:
-      type: nodePort
+      type: NodePort
       nodePort: 31001
 

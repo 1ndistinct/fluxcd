@@ -22,6 +22,6 @@ spec:
       storageClass: microk8s-hostpath
     master:
       service:
-        type: nodePort 
+        type: NodePort 
         nodePorts:
           redis: 32000
