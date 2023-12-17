@@ -87,7 +87,7 @@ spec:
       protocol: UDP
       targetPort: 51820
       nodePort: 31500
-    - name: vpn
+    - name: ui
       port: 5000
       protocol: TCP
       targetPort: 5000
