@@ -22,7 +22,7 @@ spec:
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
-            - mountPath: /etc/wireguard
+            - mountPath: /config
               name: wireguard-pv
           name: wireguard
           envFrom:
