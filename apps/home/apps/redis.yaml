@@ -20,3 +20,8 @@ spec:
       enabled: false
     global:
       storageClass: microk8s-hostpath
+    master:
+      service:
+        type: nodePort 
+        nodePorts:
+          redis: 32000

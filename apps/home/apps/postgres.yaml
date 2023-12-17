@@ -40,16 +40,8 @@ spec:
         kind: HelmRepository
         name: runix-charts
         namespace: flux-system
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-external
-spec:
-  type: NodePort
-  ports:
-    - name: postgresql
-      port: 5432
-      protocol: TCP
-      targetPort: 5432
-      nodePort: 31000
+  values:
+    service:
+      type: nodePort
+      nodePort: 31001
+
