@@ -108,7 +108,7 @@ metadata:
   name: wireguard    
 type: Opaque
 data:
-  WGUI_USERNAME: "admin"
-  WGUI_PASSWORD: "password"
-  WGUI_MANAGE_START: "true"
-  WGUI_MANAGE_RESTART: "true"
+  WGUI_MANAGE_RESTART: dHJ1ZQ==
+  WGUI_MANAGE_START: dHJ1ZQ==
+  WGUI_PASSWORD: cGFzc3dvcmQ=
+  WGUI_USERNAME: YWRtaW4=
