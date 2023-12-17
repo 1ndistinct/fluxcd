@@ -5,7 +5,6 @@ resources:
 - sealed-secrets.yaml
 - grafana.yaml
 - prometheus-community.yaml
-- wireguard.yaml
 - pgadmin.yaml
 - redis.yaml
 - pypi-server.yaml

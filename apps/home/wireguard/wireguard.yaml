@@ -6,8 +6,6 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations: 
-    meta.helm.sh/release-name: wireguard
   name: wireguard
   namespace: wireguard
 spec:
@@ -36,6 +34,26 @@ spec:
               - NET_ADMIN
               - SYS_MODULE
             privileged: true
+      volumes:
+      - name: wireguard-pv
+        persistentVolumeClaim:
+          claimName: wireguard-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wireguard-ui
+  namespace: wireguard
+spec:
+  selector:
+    matchLabels:
+      app: wireguard-ui
+  template:
+    metadata:
+      labels:
+        app: wireguard-ui
+    spec:
+      containers:
         - image: ngoduykhanh/wireguard-ui:latest
           volumeMounts:
             - mountPath: /etc/wireguard
@@ -77,6 +95,18 @@ spec:
       protocol: UDP
       targetPort: 51820
       nodePort: 31500
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wireguard-ui-external
+  namespace: wireguard
+spec:
+  type: NodePort
+  selector:
+    app: wireguard-ui
+  ports:
     - name: ui
       port: 5000
       protocol: TCP
