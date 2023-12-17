@@ -19,4 +19,7 @@ spec:
         kind: HelmRepository
         name: argocd
         namespace: flux-system
-
+  values:
+    server:
+      service:
+        type: NodePort
