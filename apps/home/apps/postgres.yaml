@@ -48,7 +48,6 @@ metadata:
 spec:
   type: NodePort
   ports:
-  ports:
     - name: postgresql
       port: 5432
       protocol: TCP
