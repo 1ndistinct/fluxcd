@@ -3,36 +3,6 @@ kind: Namespace
 metadata:
   name: wireguard
 ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: wireguard
-#   namespace: wireguard
-# spec:
-#   releaseName: wireguard
-#   interval: 1m
-#   chart:
-#     spec:
-#       chart: wg-easy
-#       version: '3.0.8'
-#       sourceRef:
-#         kind: HelmRepository
-#         name: wireguard
-#         namespace: flux-system
-#   values:
-#     workload:
-#       main:
-#         podSpec:
-#           containers:
-#             main:
-#               env:
-#                 WG_HOST: "2.219.138.110"
-#                 WG_MTU: 1420
-#                 WG_DEVICE: enp3s0
-#                 WG_PERSISTENT_KEEPALIVE: 0
-#                 WG_DEFAULT_DNS: "1.1.1.1,8.8.8.8,8.8.4.4"
-#                 WG_ALLOWED_IPS: "0.0.0.0/0, ::/0"
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,7 +23,7 @@ spec:
         - image: linuxserver/wireguard:latest
           volumeMounts:
             - mountPath: /etc/wireguard
-            name: wireguard-pv
+              name: wireguard-pv
           name: wireguard
           envFrom:
             - secretRef:
@@ -69,7 +39,7 @@ spec:
         - image: ngoduykhanh/wireguard-ui:latest
           volumeMounts:
             - mountPath: /etc/wireguard
-            name: wireguard-pv
+              name: wireguard-pv
           name: wireguard-ui
           envFrom:
             - secretRef:
