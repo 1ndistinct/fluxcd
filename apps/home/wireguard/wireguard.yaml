@@ -108,8 +108,6 @@ spec:
       targetPort: 5000
       nodePort: 31501
 ---
-
----
 # Source: llama/templates/secret.yaml
 apiVersion: v1
 kind: Secret
