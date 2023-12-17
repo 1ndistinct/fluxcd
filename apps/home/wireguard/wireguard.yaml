@@ -3,32 +3,119 @@ kind: Namespace
 metadata:
   name: wireguard
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: wireguard
+#   namespace: wireguard
+# spec:
+#   releaseName: wireguard
+#   interval: 1m
+#   chart:
+#     spec:
+#       chart: wg-easy
+#       version: '3.0.8'
+#       sourceRef:
+#         kind: HelmRepository
+#         name: wireguard
+#         namespace: flux-system
+#   values:
+#     workload:
+#       main:
+#         podSpec:
+#           containers:
+#             main:
+#               env:
+#                 WG_HOST: "2.219.138.110"
+#                 WG_MTU: 1420
+#                 WG_DEVICE: enp3s0
+#                 WG_PERSISTENT_KEEPALIVE: 0
+#                 WG_DEFAULT_DNS: "1.1.1.1,8.8.8.8,8.8.4.4"
+#                 WG_ALLOWED_IPS: "0.0.0.0/0, ::/0"
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  annotations: 
+    meta.helm.sh/release-name: wireguard
   name: wireguard
   namespace: wireguard
 spec:
-  releaseName: wireguard
-  interval: 1m
-  chart:
+  selector:
+    matchLabels:
+      app: wireguard
+  template:
+    metadata:
+      labels:
+        app: wireguard
     spec:
-      chart: wg-easy
-      version: '3.0.8'
-      sourceRef:
-        kind: HelmRepository
+      containers:
+        image: linuxserver/wireguard:latest
         name: wireguard
-        namespace: flux-system
-  values:
-    workload:
-      main:
-        podSpec:
-          containers:
-            main:
-              env:
-                WG_HOST: "2.219.138.110"
-                WG_MTU: 1420
-                WG_DEVICE: enp3s0
-                WG_PERSISTENT_KEEPALIVE: 0
-                WG_DEFAULT_DNS: "1.1.1.1,8.8.8.8,8.8.4.4"
-                WG_ALLOWED_IPS: "0.0.0.0/0, ::/0"
+        ports:
+        - containerPort: 51820
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_MODULE
+          privileged: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: 
+    meta.helm.sh/release-name: wireguard-ui
+  name: wireguard-ui
+  namespace: wireguard
+spec:
+  selector:
+    matchLabels:
+      app: wireguard-ui
+  template:
+    metadata:
+      labels:
+        app: wireguard-ui
+    spec:
+      containers:
+        image: ngoduykhanh/wireguard-ui:latest
+        name: wireguard-ui
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_MODULE
+          privileged: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wireguard-external
+  namespace: wireguard
+spec:
+  type: NodePort
+  selector:
+    app: wireguard
+  ports:
+    - name: vpn
+      port: 51820
+      protocol: UDP
+      targetPort: 51820
+      nodePort: 31500
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wireguard-ui-external
+  namespace: wireguard
+spec:
+  type: NodePort
+  selector:
+    app: wireguard-ui
+  ports:
+    - name: vpn
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+      nodePort: 31501
+---
