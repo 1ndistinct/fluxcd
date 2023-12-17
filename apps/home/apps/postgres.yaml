@@ -15,6 +15,7 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+    fullnameOverride: postgres
     architecture: standalone
     global:
       storageClass: microk8s-hostpath
