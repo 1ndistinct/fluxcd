@@ -15,7 +15,7 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
-    architecture: standalone 
+    architecture: standalone
     auth:
       enabled: false
     global:

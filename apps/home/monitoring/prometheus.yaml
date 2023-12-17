@@ -14,14 +14,14 @@
 #         kind: HelmRepository
 #         name: prometheus-community
 #         namespace: flux-system
-#   # values:
-#   #   grafana:
-#   #     additionalDataSources:
-#   #       - name: Loki
-#   #         type: loki
-#   #         url: http://loki:3100
-#           ## Needed if loki auth is enabled
-#           # jsonData:
-#           #   httpHeaderName1: 'X-Scope-OrgID'
-#           # secureJsonData:
-#           #   httpHeaderValue1: '1' 
+#   values:
+#     grafana:
+#       additionalDataSources:
+#         - name: Loki
+#           type: loki
+#           url: http://loki:3100
+#           # Needed if loki auth is enabled
+#           jsonData:
+#             httpHeaderName1: 'X-Scope-OrgID'
+#           secureJsonData:
+#             httpHeaderValue1: '1' 
