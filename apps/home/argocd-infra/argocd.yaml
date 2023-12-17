@@ -31,3 +31,5 @@ spec:
     server:
       service:
         type: NodePort
+        servicePortHttps: 9001
+        servicePortHttp: 9000
