@@ -111,7 +111,7 @@ spec:
       port: 5000
       protocol: TCP
       targetPort: 5000
-      nodePort: 31501
+      nodePort: 31502
 ---
 # Source: llama/templates/secret.yaml
 apiVersion: v1
