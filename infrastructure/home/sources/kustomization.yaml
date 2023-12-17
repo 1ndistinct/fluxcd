@@ -6,6 +6,6 @@ resources:
 - grafana.yaml
 - prometheus-community.yaml
 - wireguard.yaml
-- postgres-operator.yaml
+- pgadmin.yaml
 - redis.yaml
 - pypi-server.yaml
