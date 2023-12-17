@@ -16,6 +16,8 @@ spec:
         namespace: flux-system
   values:
     fullnameOverride: postgres
+    auth:
+      enablePostgresUser: true
     architecture: standalone
     global:
       storageClass: microk8s-hostpath
