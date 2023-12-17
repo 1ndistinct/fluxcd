@@ -55,7 +55,7 @@ spec:
       volumes:
       - name: wireguard-pv
         persistentVolumeClaim:
-          claimName: wireguard-pv
+          claimName: wireguard-pvc
 ---
 apiVersion: v1
 kind: Service
