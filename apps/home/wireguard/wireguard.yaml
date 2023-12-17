@@ -107,7 +107,7 @@ kind: Secret
 metadata:
   name: wireguard    
 type: Opaque
-stringData:
+data:
   WGUI_USERNAME: admin
   WGUI_PASSWORD: password
   WGUI_MANAGE_START: true
