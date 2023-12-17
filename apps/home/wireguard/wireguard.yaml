@@ -52,6 +52,9 @@ spec:
       containers:
         - image: linuxserver/wireguard:latest
           name: wireguard
+          envFrom:
+            - secretRef:
+                name: wireguard
           ports:
             - containerPort: 51820
           securityContext:
@@ -62,6 +65,9 @@ spec:
             privileged: true
         - image: ngoduykhanh/wireguard-ui:latest
           name: wireguard-ui
+          envFrom:
+            - secretRef:
+                name: wireguard
           ports:
             - containerPort: 5000
           securityContext:
@@ -93,3 +99,16 @@ spec:
       targetPort: 5000
       nodePort: 31501
 ---
+
+---
+# Source: llama/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wireguard    
+type: Opaque
+stringData:
+  WGUI_USERNAME: admin
+  WGUI_PASSWORD: password
+  WGUI_MANAGE_START: true
+  WGUI_MANAGE_RESTART: true
