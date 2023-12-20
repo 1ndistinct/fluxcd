@@ -1,5 +1,9 @@
 ### https://unix.stackexchange.com/questions/607004/cant-access-services-on-server-using-its-public-ip-after-starting-wireguard
 ### How to get internet access
+#### sysctl -w -q net.ipv4.ip_forward=1;
+#### ip rule add from <interface IP> lookup main
+#### iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;
+#### iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE;  
 apiVersion: v1
 kind: Namespace
 metadata:
