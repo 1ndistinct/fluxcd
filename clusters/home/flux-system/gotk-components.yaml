@@ -3547,6 +3547,7 @@ spec:
       labels:
         app: source-controller
     spec:
+      dnsPolicy: Default
       containers:
       - args:
         - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
@@ -3564,6 +3565,7 @@ spec:
         - name: TUF_ROOT
           value: /tmp/.sigstore
         image: ghcr.io/fluxcd/source-controller:v1.1.2
+        
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -5287,6 +5289,7 @@ spec:
       labels:
         app: kustomize-controller
     spec:
+      dnsPolicy: Default
       containers:
       - args:
         - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
@@ -6311,6 +6314,7 @@ spec:
       labels:
         app: helm-controller
     spec:
+      dnsPolicy: Default
       containers:
       - args:
         - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
@@ -7964,6 +7968,7 @@ spec:
       labels:
         app: notification-controller
     spec:
+      dnsPolicy: Default
       containers:
       - args:
         - --watch-all-namespaces=true
