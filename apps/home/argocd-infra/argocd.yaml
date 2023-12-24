@@ -28,18 +28,7 @@ spec:
       retries: 1
       strategy: rollback
   values:
-    controller:
-      dnsPolicy: Default
-    repoServer:
-      dnsPolicy: Default
-    dex:
-      dnsPolicy: Default
-    applicationSet:
-      dnsPolicy: Default
-    notifications:
-      dnsPolicy: Default
     server:
-      dnsPolicy: Default
       service:
         type: NodePort
         servicePortHttps: 443
