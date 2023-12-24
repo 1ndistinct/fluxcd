@@ -136,7 +136,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wireguard-pvc
 spec:
-  storageClassName: microk8s-hostpath
+  storageClassName: nfs
   accessModes: 
     - ReadWriteOnce
   resources:
@@ -148,7 +148,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wireguard-ui-db
 spec:
-  storageClassName: microk8s-hostpath
+  storageClassName: nfs
   accessModes: 
     - ReadWriteOnce
   resources:

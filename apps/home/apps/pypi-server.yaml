@@ -18,7 +18,7 @@ spec:
     pod:
       replicas: 1
     persistence:
-      storageClassName: microk8s-hostpath
+      storageClassName: nfs
 ---
 apiVersion: v1
 kind: Service

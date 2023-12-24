@@ -20,7 +20,7 @@ spec:
     auth:
       enabled: false
     global:
-      storageClass: microk8s-hostpath
+      storageClass: nfs
     master:
       service:
         type: NodePort 

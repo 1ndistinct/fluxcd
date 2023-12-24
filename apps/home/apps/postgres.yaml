@@ -20,7 +20,7 @@ spec:
       enablePostgresUser: true
     architecture: standalone
     global:
-      storageClass: microk8s-hostpath
+      storageClass: nfs
     primary:
       service:
         type: NodePort
