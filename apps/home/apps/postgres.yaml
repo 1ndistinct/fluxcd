@@ -44,7 +44,8 @@ spec:
         name: runix-charts
         namespace: flux-system
   values:
-    storageClass: nfs
+    persistentVolume:
+      storageClass: nfs
     service:
       type: NodePort
       nodePort: 31001
