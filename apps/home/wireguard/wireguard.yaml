@@ -21,6 +21,8 @@ spec:
       labels:
         app: wireguard
     spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
@@ -57,8 +59,6 @@ spec:
       labels:
         app: wireguard-ui
     spec:
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
       restartPolicy: Always
       containers:
         - image: ngoduykhanh/wireguard-ui:latest
