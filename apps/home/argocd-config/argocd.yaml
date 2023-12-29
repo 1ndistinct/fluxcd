@@ -113,3 +113,21 @@ spec:
   namespaceResourceWhitelist:
   - group: '*'
     kind: '*'
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  dex.config: |
+    connectors:
+    - config:
+        issuer: http://10.252.1.0:30101
+        clientID: "YOUR_CLIENT_ID"
+        clientSecret: "YOUR_CLIENT_SECRET"
+      type: oidc
+      id: Login
+      name: Auth API
+  url: http://10.252.1.0:30101
+---
