@@ -114,20 +114,35 @@ spec:
   - group: '*'
     kind: '*'
 ---
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: argocd-cm
-#   namespace: argocd
-# data:
-#   dex.config: |
-#     connectors:
-#     - config:
-#         issuer: http://10.252.1.0:30101
-#         clientID: "YOUR_CLIENT_ID"
-#         clientSecret: "YOUR_CLIENT_SECRET"
-#       type: oidc
-#       id: Login
-#       name: Auth API
-#   url: http://10.252.1.0:30101
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: "default"
+  labels:
+    helm.sh/chart: argo-cd-5.51.6
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: "v2.9.3"
+data:
+  admin.enabled: "true"
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  exec.enabled: "false"
+  server.rbac.log.enforce.enable: "false"
+  timeout.hard.reconciliation: 0s
+  timeout.reconciliation: 180s
+  dex.config: |
+    connectors:
+    - config:
+        issuer: http://10.252.1.0:30101
+        clientID: "YOUR_CLIENT_ID"
+        clientSecret: "YOUR_CLIENT_SECRET"
+      type: oidc
+      id: Login
+      name: Auth API
+  url: http://10.252.1.0:30101
+
 ---
