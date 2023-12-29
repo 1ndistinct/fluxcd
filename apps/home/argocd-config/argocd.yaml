@@ -118,7 +118,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cm
-  namespace: "default"
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-5.51.6
     app.kubernetes.io/name: argocd-cm
