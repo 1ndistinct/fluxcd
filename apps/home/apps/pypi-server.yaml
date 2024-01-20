@@ -18,7 +18,7 @@ spec:
     pod:
       replicas: 1
     persistence:
-      storageClassName: nfs
+      storageClassName: rook-ceph-block
 ---
 apiVersion: v1
 kind: Service

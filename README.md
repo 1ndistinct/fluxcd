@@ -28,3 +28,40 @@ stringData:
 ## Charts
 - https://truecharts.org/charts/description_list#Stable
 
+### Add taint to node that is running wireguard 
+- Due to the network routing, other pods won't have internet connection. We can use this node primarily for storage and pods that don't need internet. Lets add a taint to this node to say as much. 
+- `kubectl taint nodes node1 networkmode=host:PreferNoSchedule`
+- all pods and deployments that don't need outbound access should be scheduled on this node 
+
+### Add Storage:
+- `microk8s enable rook-ceph`
+- create a ceph cluster with the below 
+```bash
+kubectl apply -n rook-ceph -f - <<EOF
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v17.2.6
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 3
+    allowMultiplePerNode: true
+  dashboard:
+    enabled: true
+  # cluster level storage configuration and selection
+  storage:
+    useAllNodes: true
+    useAllDevices: true
+  placement:
+    all:
+      tolerations:
+        - effect: PreferNoSchedule
+          key: networkmode
+          operator: Equal
+          value: host
+EOF
+```
