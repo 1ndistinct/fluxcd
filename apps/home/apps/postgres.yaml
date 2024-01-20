@@ -20,7 +20,7 @@ spec:
       enablePostgresUser: true
     architecture: standalone
     global:
-      storageClass: rook-cephfs
+      storageClass: rook-ceph-block
     primary:
       service:
         type: NodePort
@@ -46,7 +46,7 @@ spec:
   values:
     persistentVolume:
       size: 100Mi
-      storageClass: rook-cephfs
+      storageClass: rook-ceph-block
     service:
       type: NodePort
       nodePort: 31001
