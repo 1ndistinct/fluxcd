@@ -22,6 +22,8 @@ spec:
     global:
       storageClass: rook-ceph-block
     master:
+      persistence:
+        size: 5Gi
       service:
         type: NodePort 
         nodePorts:

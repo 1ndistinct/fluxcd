@@ -19,6 +19,7 @@ spec:
       replicas: 1
     persistence:
       storageClassName: rook-ceph-block
+      size: 1Gi
 ---
 apiVersion: v1
 kind: Service
