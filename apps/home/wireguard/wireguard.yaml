@@ -23,6 +23,11 @@ spec:
     spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
+      tolerations:
+      - key: networkmode
+        operator: Equal
+        value: host
+        effect: PreferNoSchedule
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -90,7 +95,7 @@ spec:
             privileged: true
       tolerations:
       - key: networkmode
-        operator: Equals
+        operator: Equal
         value: host
         effect: PreferNoSchedule
       affinity:
