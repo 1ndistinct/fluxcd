@@ -38,6 +38,7 @@ spec:
                 - host  
       persistence:
         size: 5Gi
+        accessModes: ["ReadWriteMany"]
       service:
         type: NodePort
         nodePorts:
@@ -77,6 +78,7 @@ spec:
     persistentVolume:
       size: 150Mi
       storageClass: rook-cephfs
+      accessMode: ReadWriteMany
     service:
       type: NodePort
       nodePort: 31001

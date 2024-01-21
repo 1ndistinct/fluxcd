@@ -58,7 +58,7 @@ spec:
     useAllNodes: true
     useAllDevices: true
   placement:
-    all:
+    osd:
       tolerations:
         - effect: PreferNoSchedule
           key: networkmode
@@ -146,8 +146,43 @@ parameters:
 reclaimPolicy: Delete
 EOF
 ```
+##### Filesystem explorer pod 
+```bash
+kubectl apply -n apps -f - <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-explorer
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: file-explorer
+  template:
+    metadata:
+      labels:
+        app: file-explorer
+    spec:
+      tolerations:
+      - effect: PreferNoSchedule
+        key: networkmode
+        operator: Equal
+        value: host
+      containers:
+        - image: filebrowser/filebrowser:latest
+          volumeMounts:
+            - mountPath: /srv/volume1
+              name: volume1
+          name: wireguard
+      volumes:
+      - name: volume1
+        persistentVolumeClaim:
+          claimName: pypi-server
+EOF
+``` 
 
-##### Wireguard settings to get internet access
+
+### Wireguard settings to get internet access
 - [article](https://unix.stackexchange.com/questions/607004/cant-access-services-on-server-using-its-public-ip-after-starting-wireguard)
 - POST UP: `sysctl -w -q net.ipv4.ip_forward=1;iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule add from 10.252.1.0/24 lookup main`
-- POST DOWN: `sysctl -w -q net.ipv4.ip_forward=0;iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule del from 10.252.1.0/24 lookup main``
+- POST DOWN: `sysctl -w -q net.ipv4.ip_forward=0;iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule del from 10.252.1.0/24 lookup main`

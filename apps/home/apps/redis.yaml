@@ -38,6 +38,7 @@ spec:
                 - host  
       persistence:
         size: 5Gi
+        accessModes: ["ReadWriteMany"]
       service:
         type: NodePort 
         nodePorts:
