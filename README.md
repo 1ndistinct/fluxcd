@@ -65,7 +65,11 @@ spec:
           value: host
 EOF
 ```
+##### BLOCK STORAGE
 - install storage class for block storage [docs](https://rook.io/docs/rook/v1.12/Storage-Configuration/Block-Storage-RBD/block-storage/#provision-storage)7
+  - IF YOU'RE HAVING ISSUES: 
+    - install rook ceph toolbox on kuber [plugin](https://rook.io/docs/rook/latest-release/Troubleshooting/kubectl-plugin/)
+    - run init on replica pool `kubectl rook-ceph rbd pool init replicapool`
   - NOTE: DOESN'T HAVE READWRITEMANY IN FILESYSTEM MODE - USE CEPHFS INSTEAD
 ```bash 
 kubectl apply -n rook-ceph -f - <<EOF
@@ -100,20 +104,37 @@ reclaimPolicy: Delete
 allowVolumeExpansion: true
 EOF
 ```
+##### FILESYSTEM STORAGE
 - install storage class for filesystem storage [docs](https://rook.io/docs/rook/v1.12/Storage-Configuration/Shared-Filesystem-CephFS/filesystem-storage/#create-the-filesystem)
 ```bash
 kubectl apply -n rook-ceph -f - <<EOF
-
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystem
+metadata:
+  name: filesystem
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    replicated:
+      size: 1
+  dataPools:
+    - name: replicated
+      replicated:
+        size: 1
+  preserveFilesystemOnDelete: true
+  metadataServer:
+    activeCount: 1
+    activeStandby: true
+---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: rook-cephfs
-# Change "rook-ceph" provisioner prefix to match the operator namespace if needed
 provisioner: rook-ceph.cephfs.csi.ceph.com
 parameters:
   clusterID: rook-ceph
   fsName: filesystem
-  pool: filesystem-replicated
+  pswool: filesystem-replicated
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
   csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
   csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
@@ -124,6 +145,4 @@ parameters:
 reclaimPolicy: Delete
 EOF
 ```
-##### If needed 
-- install rook ceph toolbox on kuber [plugin](https://rook.io/docs/rook/latest-release/Troubleshooting/kubectl-plugin/)
-- run init on replica pool `kubectl rook-ceph rbd pool init replicapool`
+
