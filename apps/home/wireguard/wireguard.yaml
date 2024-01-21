@@ -23,6 +23,15 @@ spec:
     spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: networkmode
+                operator: In
+                values:
+                - host  
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
@@ -79,6 +88,20 @@ spec:
               - NET_ADMIN
               - SYS_MODULE
             privileged: true
+      tolerations:
+      - key: networkmode
+        operator: Equals
+        value: host
+        effect: PreferNoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: networkmode
+                operator: In
+                values:
+                - host   
       volumes:
       - name: wireguard-pv
         persistentVolumeClaim:
