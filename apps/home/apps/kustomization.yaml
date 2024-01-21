@@ -6,3 +6,4 @@ resources:
 - postgres.yaml
 - redis.yaml
 - pypi-server.yaml
+- file-explorer.yaml
