@@ -76,7 +76,7 @@ metadata:
 spec:
   failureDomain: host
   replicated:
-    size: 3
+    size: 1
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -99,3 +99,6 @@ reclaimPolicy: Delete
 allowVolumeExpansion: true
 EOF
 ```
+##### If needed 
+- install rook ceph toolbox on kuber [plugin](https://rook.io/docs/rook/latest-release/Troubleshooting/kubectl-plugin/)
+- run init on replica pool `kubectl rook-ceph rbd pool init replicapool`

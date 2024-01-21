@@ -45,7 +45,7 @@ spec:
         namespace: flux-system
   values:
     persistentVolume:
-      size: 100Mi
+      size: 150Mi
       storageClass: rook-ceph-block
     service:
       type: NodePort
