@@ -147,3 +147,7 @@ reclaimPolicy: Delete
 EOF
 ```
 
+##### Wireguard settings to get internet access
+- [article](https://unix.stackexchange.com/questions/607004/cant-access-services-on-server-using-its-public-ip-after-starting-wireguard)
+- POST UP: `sysctl -w -q net.ipv4.ip_forward=1;iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule add from 10.252.1.0/24 lookup main`
+- POST DOWN: `sysctl -w -q net.ipv4.ip_forward=0;iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule del from 10.252.1.0/24 lookup main``
