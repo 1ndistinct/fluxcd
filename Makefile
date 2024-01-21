@@ -16,6 +16,6 @@ apply-argo-repo-creds:
 	kubectl apply -f repo-creds.yaml
 
 create-regcred:
-	kubectl create secret generic regcred \
-    --from-file=.dockerconfigjson=/home/ciaran.docker/config.json> \
+	kubectl -n apps create secret generic regcred \
+    --from-file=.dockerconfigjson=/home/ciaran/.docker/config.json \
     --type=kubernetes.io/dockerconfigjson
