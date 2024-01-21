@@ -22,6 +22,20 @@ spec:
     global:
       storageClass: rook-cephfs
     master:
+      tolerations:
+      - key: networkmode
+        operator: Equal
+        value: host
+        effect: PreferNoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: networkmode
+                operator: In
+                values:
+                - host  
       persistence:
         size: 5Gi
       service:
