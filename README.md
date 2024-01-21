@@ -65,7 +65,8 @@ spec:
           value: host
 EOF
 ```
-- install storage class [docs](https://rook.io/docs/rook/v1.12/Storage-Configuration/Block-Storage-RBD/block-storage/#provision-storage)
+- install storage class for block storage [docs](https://rook.io/docs/rook/v1.12/Storage-Configuration/Block-Storage-RBD/block-storage/#provision-storage)7
+  - NOTE: DOESN'T HAVE READWRITEMANY IN FILESYSTEM MODE - USE CEPHFS INSTEAD
 ```bash 
 kubectl apply -n rook-ceph -f - <<EOF
 apiVersion: ceph.rook.io/v1
@@ -81,7 +82,7 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-   name: rook-ceph-block
+   name: rook-cephfs
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
     clusterID: rook-ceph
@@ -97,6 +98,30 @@ parameters:
     csi.storage.k8s.io/fstype: ext4
 reclaimPolicy: Delete
 allowVolumeExpansion: true
+EOF
+```
+- install storage class for filesystem storage [docs](https://rook.io/docs/rook/v1.12/Storage-Configuration/Shared-Filesystem-CephFS/filesystem-storage/#create-the-filesystem)
+```bash
+kubectl apply -n rook-ceph -f - <<EOF
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rook-cephfs
+# Change "rook-ceph" provisioner prefix to match the operator namespace if needed
+provisioner: rook-ceph.cephfs.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  fsName: filesystem
+  pool: filesystem-replicated
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+
+reclaimPolicy: Delete
 EOF
 ```
 ##### If needed 
