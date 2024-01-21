@@ -23,7 +23,7 @@ spec:
       storageClass: rook-cephfs
     master:
       persistence:
-        size: 4Gi
+        size: 5Gi
       service:
         type: NodePort 
         nodePorts:
