@@ -78,7 +78,7 @@ spec:
     persistentVolume:
       size: 150Mi
       storageClass: nfs
-      accessMode: ReadWriteMany
+      accessModes: ["ReadWriteMany"]
     service:
       type: NodePort
       nodePort: 31001
