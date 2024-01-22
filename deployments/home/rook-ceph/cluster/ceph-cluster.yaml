@@ -24,20 +24,21 @@ spec:
       strategy: rollback
   values:
     clusterName: filesystem
-    mon:
-      count: 1
-    mgr:
-      count: 1
-    logCollector:
-      enabled: false
-    placement:
-      osd:
-        tolerations:
-        - key: networkmode
-          operator: Equals
-          value: host
-    storage: 
-      useAllNodes: true
-      useAllDevices: true
+    cephClusterSpec:
+      mon:
+        count: 1
+      mgr:
+        count: 1
+      logCollector:
+        enabled: false
+      placement:
+        osd:
+          tolerations:
+          - key: networkmode
+            operator: Equals
+            value: host
+      storage: 
+        useAllNodes: true
+        useAllDevices: true
     allowVolumeExpansion: true
     reclaimPolicy: Delete
