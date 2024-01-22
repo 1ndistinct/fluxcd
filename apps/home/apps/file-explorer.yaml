@@ -13,10 +13,19 @@ spec:
         app: file-explorer
     spec:
       tolerations:
-      - effect: PreferNoSchedule
+      - effect: NoSchedule
         key: networkmode
         operator: Equal
         value: host
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: networkmode
+                operator: In
+                values:
+                - host   
       containers:
         - image: filebrowser/filebrowser:latest
           volumeMounts:

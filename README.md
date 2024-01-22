@@ -30,7 +30,7 @@ stringData:
 
 ### Add taint and label to node that is running wireguard 
 - Due to the network routing, other pods won't have internet connection. We can use this node primarily for storage and pods that don't need internet. Lets add a taint to this node to say as much. 
-- `kubectl taint nodes node1 networkmode=host:PreferNoSchedule`
+- `kubectl taint nodes node1 networkmode=host:NoSchedule`
 - `kubectl label nodes node1 networkmode=host`
 - all pods and deployments that don't need outbound access should be scheduled on this node 
 
@@ -60,7 +60,7 @@ spec:
   placement:
     osd:
       tolerations:
-        - effect: PreferNoSchedule
+        - effect: NoSchedule
           key: networkmode
           operator: Equal
           value: host
@@ -164,7 +164,7 @@ spec:
         app: file-explorer
     spec:
       tolerations:
-      - effect: PreferNoSchedule
+      - effect: NoSchedule
         key: networkmode
         operator: Equal
         value: host

@@ -21,7 +21,7 @@ spec:
       - key: networkmode
         operator: Equal
         value: host
-        effect: PreferNoSchedule
+        effect: NoSchedule
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
