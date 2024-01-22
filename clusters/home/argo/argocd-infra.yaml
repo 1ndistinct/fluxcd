@@ -7,7 +7,7 @@ spec:
   interval: 0m30s
   dependsOn:
     - name: argo-namespace
-  path: "./deployments/home/argo/argocd-infra"
+  path: "./deployments/home/argo/infra"
   sourceRef:
     kind: GitRepository
     name: flux-system

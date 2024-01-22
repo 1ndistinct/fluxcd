@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: ceph-cluster
+  name: ceph-operator
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: ceph-operator
-  path: "./deployments/home/rook-ceph/ceph-cluster"
+    - name: rook-ceph-namespace
+  path: "./deployments/home/rook-ceph/operator"
   sourceRef:
     kind: GitRepository
     name: flux-system
