@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: redis
+  name: monitoring
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: namespace
-  path: "./deployments/home/apps/redis"
+    - name: mon-namespace
+  path: "./deployments/home/monitoring/prometheus"
   sourceRef:
     kind: GitRepository
     name: flux-system
