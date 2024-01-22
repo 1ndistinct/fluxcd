@@ -49,21 +49,36 @@ spec:
     image: quay.io/ceph/ceph:v17.2.6
   dataDirHostPath: /var/lib/rook
   mon:
-    count: 3
+    count: 1
     allowMultiplePerNode: true
+  mgr:
+    count: 1
+    allowMultiplePerNode: true
+  crashCollector:
+    disable: true
+  monitoring:
+    enabled: false
   dashboard:
     enabled: true
+  healthCheck:
+    daemonHealth:
+      mon:
+        interval: 45s
+        timeout: 600s
   # cluster level storage configuration and selection
-  storage:
-    useAllNodes: true
-    useAllDevices: true
   placement:
-    osd:
-      tolerations:
-        - effect: NoSchedule
-          key: networkmode
-          operator: Equal
-          value: host
+    all:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: networkmode
+              operator: NotIn
+              values:
+              - host  
+  storage:
+    nodes: 
+    - name: ciaran-thinkcentre-m73
 EOF
 ```
 ##### BLOCK STORAGE

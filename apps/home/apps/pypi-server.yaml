@@ -32,7 +32,7 @@ spec:
                 values:
                 - host  
     persistence:
-      storageClassName: rook-cephfs
+      storageClassName: nfs
       size: 500Mi
 ---
 apiVersion: v1

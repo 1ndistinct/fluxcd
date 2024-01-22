@@ -20,7 +20,7 @@ spec:
       enablePostgresUser: true
     architecture: standalone
     global:
-      storageClass: rook-cephfs
+      storageClass: nfs
     primary:
       tolerations:
       - key: networkmode
@@ -77,7 +77,7 @@ spec:
               - host  
     persistentVolume:
       size: 150Mi
-      storageClass: rook-cephfs
+      storageClass: nfs
       accessMode: ReadWriteMany
     service:
       type: NodePort
