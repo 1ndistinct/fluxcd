@@ -76,7 +76,7 @@ spec:
               values:
               - host  
     persistentVolume:
-      size: 150Mi
+      size: 100Mi
       storageClass: nfs
       accessModes: ["ReadWriteMany"]
     service:
