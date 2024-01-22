@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph-cluster
+  namespace: rook-ceph
+spec:
+  releaseName: rook-ceph-cluster
+  interval: 1m
+  chart:
+    spec:
+      chart: rook-ceph-cluster
+      version: '1.13.2'
+      sourceRef:
+        kind: HelmRepository
+        name: rook-release
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 1
+  upgrade:
+    timeout: 30s
+    remediation:
+      retries: 1
+      strategy: rollback
+  values:
+    clusterName: filesystem
+    mon:
+      count: 1
+    mgr:
+      count: 1
+    logCollector:
+      enabled: false
+    placement:
+      osd:
+        tolerations:
+        - key: networkmode
+          operator: Equals
+          value: host
+    storage: 
+      useAllNodes: true
+      useAllDevices: true
+    allowVolumeExpansion: true
+    reclaimPolicy: Delete
