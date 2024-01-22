@@ -6,8 +6,8 @@ metadata:
 spec:
   interval: 0m30s
   dependsOn:
-    - name: infrastructure
-  path: "./apps/home/argocd-infra"
+    - name: namespace
+  path: "./deployments/home/argo/argocd-infra"
   sourceRef:
     kind: GitRepository
     name: flux-system

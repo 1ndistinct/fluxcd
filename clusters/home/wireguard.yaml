@@ -6,8 +6,8 @@ metadata:
 spec:
   interval: 0m30s
   dependsOn:
-    - name: infrastructure
-  path: "./apps/home/wireguard"
+    - name: namespace
+  path: "./deployments/home/apps/wireguard"
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -2,16 +2,12 @@
 ### How to get internet access
 #### POST UP: sysctl -w -q net.ipv4.ip_forward=1;iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule add from 10.252.1.0/24 lookup main
 #### POST DOWN:  sysctl -w -q net.ipv4.ip_forward=0;iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule del from 10.252.1.0/24 lookup main
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: wireguard
----
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wireguard
-  namespace: wireguard
+  namespace: apps
 spec:
   selector:
     matchLabels:
@@ -63,7 +59,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wireguard-ui
-  namespace: wireguard
+  namespace: apps
 spec:
   selector:
     matchLabels:
@@ -119,7 +115,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wireguard-external
-  namespace: wireguard
+  namespace: apps
 spec:
   type: NodePort
   selector:
@@ -136,7 +132,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wireguard-ui-external
-  namespace: wireguard
+  namespace: apps
 spec:
   type: NodePort
   selector:
@@ -153,7 +149,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: wireguard
-  namespace: wireguard
+  namespace: apps
 type: Opaque
 data:
   WGUI_PASSWORD: cGFzc3dvcmQ=
