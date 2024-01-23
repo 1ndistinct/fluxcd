@@ -78,24 +78,24 @@ spec:
               requests:
                 cpu: "1000m"
                 memory: "512Mi"
-          storageClass:
-            enabled: true
-            isDefault: true
-            mountOptions: []
-            allowedTopologies: []
-            name: rook-cephfs
-            reclaimPolicy: Delete
-            allowVolumeExpansion: true
-            volumeBindingMode: "Immediate"
-            parameters:
-              clusterID: rook-ceph
-              fsName: filesystem
-              pswool: filesystem-replicated
-              csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
-              csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-              csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
-              csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-              csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
-              csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+        storageClass:
+          enabled: true
+          isDefault: true
+          mountOptions: []
+          allowedTopologies: []
+          name: rook-cephfs
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          volumeBindingMode: "Immediate"
+          parameters:
+            clusterID: rook-ceph
+            fsName: filesystem
+            pswool: filesystem-replicated
+            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
     allowVolumeExpansion: true
     reclaimPolicy: Delete
