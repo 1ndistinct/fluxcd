@@ -81,6 +81,8 @@ spec:
           storageClass:
             enabled: true
             isDefault: false
+            mountOptions: []
+            allowedTopologies: []
             name: rook-cephfs
             reclaimPolicy: Delete
             allowVolumeExpansion: true
