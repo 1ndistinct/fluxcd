@@ -80,7 +80,7 @@ spec:
                 memory: "512Mi"
           storageClass:
             enabled: true
-            isDefault: false
+            isDefault: true
             mountOptions: []
             allowedTopologies: []
             name: rook-cephfs
