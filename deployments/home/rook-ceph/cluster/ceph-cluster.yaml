@@ -27,10 +27,23 @@ spec:
     cephClusterSpec:
       mon:
         count: 1
+        allowMultiplePerNode: true
       mgr:
         count: 1
+        allowMultiplePerNode: true
+      crashCollector:
+        disable: true
+      monitoring:
+        enabled: false
       logCollector:
         enabled: false
+      dashboard:
+        enabled: true
+      healthCheck:
+        daemonHealth:
+          mon:
+            interval: 45s
+            timeout: 600s
       placement:
         osd:
           tolerations:
@@ -50,11 +63,11 @@ spec:
             memory: 1Gi
         osd:
           limits:
-            cpu: "1000m"
-            memory: "1Gi"
+            cpu: 1000m
+            memory: 1Gi
           requests:
-            cpu: "1000m"
-            memory: "1Gi"
+            cpu: 1000m
+            memory: 1Gi
     cephObjectStores: {}
     cephBlockPools: {}
     cephFileSystems:
@@ -73,11 +86,11 @@ spec:
             activeStandby: true
             resources:
               limits:
-                cpu: "1000m"
-                memory: "512Mi"
+                cpu: 1000m
+                memory: 512Mi
               requests:
-                cpu: "1000m"
-                memory: "512Mi"
+                cpu: 1000m
+                memory: 512Mi
         storageClass:
           enabled: true
           isDefault: true
@@ -86,7 +99,7 @@ spec:
           name: rook-cephfs
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          volumeBindingMode: "Immediate"
+          volumeBindingMode: Immediate
           parameters:
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
