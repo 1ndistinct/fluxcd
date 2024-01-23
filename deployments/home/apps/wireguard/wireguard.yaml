@@ -160,7 +160,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wireguard-pvc
 spec:
-  storageClassName: nfs
+  storageClassName: rook-cephfs
   accessModes: 
     - ReadWriteMany
   resources:
@@ -172,7 +172,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wireguard-ui-db
 spec:
-  storageClassName: nfs
+  storageClassName: rook-cephfs
   accessModes: 
     - ReadWriteMany
   resources:
