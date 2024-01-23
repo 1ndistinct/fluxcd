@@ -48,7 +48,7 @@ spec:
         osd:
           tolerations:
           - key: networkmode
-            operator: Equals
+            operator: Equal
             value: host
       storage: 
         useAllNodes: true
