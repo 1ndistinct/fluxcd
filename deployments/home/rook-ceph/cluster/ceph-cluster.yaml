@@ -33,18 +33,6 @@ spec:
         enabled: false
       crashCollector:
         disable: true
-      
-      placement:
-        osd:
-          tolerations:
-          - key: networkmode
-            operator: Equal
-            value: host
-        prepareosd:
-          tolerations:
-          - key: networkmode
-            operator: Equal
-            value: host
       storage: 
         useAllNodes: true
         useAllDevices: true
@@ -100,5 +88,6 @@ spec:
             csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
             csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+            csi.storage.k8s.io/fstype: ext4
     allowVolumeExpansion: true
     reclaimPolicy: Delete
