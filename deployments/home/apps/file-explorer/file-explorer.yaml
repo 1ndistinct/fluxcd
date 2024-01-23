@@ -29,29 +29,39 @@ spec:
       containers:
         - image: filebrowser/filebrowser:latest
           volumeMounts:
-            - mountPath: /srv/volume1
-              name: volume1
-            - mountPath: /srv/volume2
-              name: volume2
-            - mountPath: /srv/volume3
-              name: volume3
-            - mountPath: /srv/volume4
-              name: volume4
+            - mountPath: /srv/pypi
+              name: pypi
+            - mountPath: /srv/postgres
+              name: postgres
+            - mountPath: /srv/redis
+              name: redis
+            - mountPath: /srv/pgadmin
+              name: pgadmin
+            - mountPath: /srv/wireguard-ui
+              name: wireguard-ui
+            - mountPath: /srv/wireguard
+              name: wireguard
+
           name: file-explorer
       volumes:
-      - name: volume1
+      - name: pypi
         persistentVolumeClaim:
           claimName: pypi-server
-      - name: volume2
+      - name: postgres
         persistentVolumeClaim:
           claimName: data-postgres-0
-      - name: volume3
+      - name: redis
         persistentVolumeClaim:
           claimName: redis-data-redis-master-0
-      - name: volume4
+      - name: pgadmin
         persistentVolumeClaim:
           claimName: pgadmin-pgadmin4
-
+      - name: wireguard-ui
+        persistentVolumeClaim:
+          claimName: wireguard-ui-db
+      - name: wireguard
+        persistentVolumeClaim:
+          claimName: wireguard-pvc
 ---
 apiVersion: v1
 kind: Service
