@@ -31,6 +31,9 @@ spec:
         count: 1
       logCollector:
         enabled: false
+      crashCollector:
+        disable: true
+      
       placement:
         osd:
           tolerations:
