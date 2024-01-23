@@ -31,7 +31,7 @@ spec:
       enableRBDSnapshotter: false
       enableNFSSnapshotter: false
       provisionerReplicas: 1
-      clusterName: filesystem
+      clusterName: rook-ceph
       provisionerTolerations: 
         - key: networkmode
           operator: Equals
