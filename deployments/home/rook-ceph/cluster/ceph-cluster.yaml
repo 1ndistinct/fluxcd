@@ -18,7 +18,7 @@ spec:
     remediation:
       retries: 1
   upgrade:
-    timeout: 31s
+    timeout: 30s
     remediation:
       retries: 1
       strategy: rollback
@@ -27,28 +27,15 @@ spec:
     cephClusterSpec:
       mon:
         count: 1
-        allowMultiplePerNode: true
       mgr:
         count: 1
-        allowMultiplePerNode: true
-      crashCollector:
-        disable: true
-      monitoring:
-        enabled: false
       logCollector:
         enabled: false
-      dashboard:
-        enabled: true
-      healthCheck:
-        daemonHealth:
-          mon:
-            interval: 45s
-            timeout: 600s
       placement:
         osd:
           tolerations:
           - key: networkmode
-            operator: Equal
+            operator: Equals
             value: host
       storage: 
         useAllNodes: true
