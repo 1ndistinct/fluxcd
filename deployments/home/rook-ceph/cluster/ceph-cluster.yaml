@@ -23,7 +23,7 @@ spec:
       retries: 1
       strategy: rollback
   values:
-    clusterName: filesystem
+    clusterName: rook-ceph
     cephClusterSpec:
       mon:
         count: 1
@@ -40,5 +40,60 @@ spec:
       storage: 
         useAllNodes: true
         useAllDevices: true
+      resources:
+        mon:
+          limits: 
+            cpu: 1000m
+            memory: 1Gi
+          requests: 
+            cpu: 1000m
+            memory: 1Gi
+        osd:
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+          requests:
+            cpu: "1000m"
+            memory: "1Gi"
+    cephObjectStores: {}
+    cephBlockPools: {}
+    cephFileSystems:
+      - name: filesystem 
+        spec:
+          metadataPool:
+            replicated:
+              size: 1
+          dataPools:
+            - name: replicated
+              replicated:
+                size: 1
+          preserveFilesystemOnDelete: true
+          metadataServer:
+            activeCount: 1
+            activeStandby: true
+            resources:
+              limits:
+                cpu: "1000m"
+                memory: "512Mi"
+              requests:
+                cpu: "1000m"
+                memory: "512Mi"
+          storageClass:
+            enabled: true
+            isDefault: false
+            name: rook-cephfs
+            reclaimPolicy: Delete
+            allowVolumeExpansion: true
+            volumeBindingMode: "Immediate"
+            parameters:
+              clusterID: rook-ceph
+              fsName: filesystem
+              pswool: filesystem-replicated
+              csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+              csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+              csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+              csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+              csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+              csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
     allowVolumeExpansion: true
     reclaimPolicy: Delete
