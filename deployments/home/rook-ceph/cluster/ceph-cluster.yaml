@@ -18,7 +18,7 @@ spec:
     remediation:
       retries: 1
   upgrade:
-    timeout: 30s
+    timeout: 31s
     remediation:
       retries: 1
       strategy: rollback
