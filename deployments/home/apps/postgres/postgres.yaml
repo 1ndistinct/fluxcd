@@ -22,20 +22,6 @@ spec:
     global:
       storageClass: nfs
     primary:
-      tolerations:
-      - key: networkmode
-        operator: Equal
-        value: host
-        effect: NoSchedule
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: networkmode
-                operator: In
-                values:
-                - host  
       persistence:
         size: 5Gi
         accessModes: ["ReadWriteMany"]

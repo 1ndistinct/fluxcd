@@ -15,20 +15,6 @@ spec:
         name: runix-charts
         namespace: flux-system
   values:
-    tolerations:
-    - key: networkmode
-      operator: Equal
-      value: host
-      effect: NoSchedule
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: networkmode
-              operator: In
-              values:
-              - host  
     persistentVolume:
       size: 100Mi
       storageClass: nfs

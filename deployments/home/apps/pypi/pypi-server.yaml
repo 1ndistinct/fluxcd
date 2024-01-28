@@ -17,20 +17,6 @@ spec:
   values:
     pod:
       replicas: 1
-      tolerations:
-      - key: networkmode
-        operator: Equal
-        value: host
-        effect: NoSchedule
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: networkmode
-                operator: In
-                values:
-                - host  
     persistence:
       storageClassName: nfs
       size: 500Mi

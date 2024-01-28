@@ -17,22 +17,15 @@ spec:
       labels:
         app: wireguard
     spec:
-      # dnsPolicy: ClusterFirstWithHostNet
-      # hostNetwork: true
-      tolerations:
-      - key: networkmode
-        operator: Equal
-        value: host
-        effect: NoSchedule
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: networkmode
+              - key: internet-exposed
                 operator: In
                 values:
-                - host  
+                - true
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
@@ -89,20 +82,15 @@ spec:
               - NET_ADMIN
               - SYS_MODULE
             privileged: true
-      tolerations:
-      - key: networkmode
-        operator: Equal
-        value: host
-        effect: NoSchedule
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: networkmode
+              - key: internet-exposed
                 operator: In
                 values:
-                - host   
+                - true   
       volumes:
       - name: wireguard-pv
         persistentVolumeClaim:
