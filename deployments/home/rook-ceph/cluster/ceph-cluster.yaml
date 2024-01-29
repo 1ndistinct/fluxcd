@@ -76,6 +76,7 @@ spec:
                 memory: 512Mi
         storageClass:
           enabled: true
+          pool: replicated
           isDefault: true
           name: rook-cephfs
           reclaimPolicy: Delete
