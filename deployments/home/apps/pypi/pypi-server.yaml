@@ -18,7 +18,7 @@ spec:
     pod:
       replicas: 1
     persistence:
-      storageClassName: nfs
+      storageClassName: rook-cephfs
       size: 500Mi
 ---
 apiVersion: v1

@@ -20,7 +20,7 @@ spec:
       enablePostgresUser: true
     architecture: standalone
     global:
-      storageClass: nfs
+      storageClass: rook-cephfs
     primary:
       persistence:
         size: 5Gi

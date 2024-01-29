@@ -17,7 +17,7 @@ spec:
   values:
     persistentVolume:
       size: 100Mi
-      storageClass: nfs
+      storageClass: rook-cephfs
       accessModes: ["ReadWriteMany"]
     service:
       type: NodePort
