@@ -26,7 +26,8 @@ spec:
     csi:
       enableCephfsDriver: true
       enableCephfsSnapshotter: true
-      enablePluginSelinuxHostMount: true
+      # enablePluginSelinuxHostMount: true
+      kubeletDirPath: "/var/snap/microk8s/common/var/lib/kubelet"
       enableRbdDriver: false
       enableRBDSnapshotter: false
       enableNFSSnapshotter: false
