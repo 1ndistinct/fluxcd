@@ -25,7 +25,7 @@ spec:
               - key: internet-exposed
                 operator: In
                 values:
-                - true
+                - "true"
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
@@ -90,7 +90,7 @@ spec:
               - key: internet-exposed
                 operator: In
                 values:
-                - true   
+                - "true"   
       volumes:
       - name: wireguard-pv
         persistentVolumeClaim:
