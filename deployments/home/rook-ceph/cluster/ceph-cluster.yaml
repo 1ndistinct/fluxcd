@@ -40,10 +40,10 @@ spec:
         mon:
           limits: 
             cpu: 1000m
-            memory: 1Gi
+            memory: 750Mi
           requests: 
             cpu: 1000m
-            memory: 1Gi
+            memory: 750Mi
         osd:
           limits:
             cpu: 1000m
