@@ -10,7 +10,7 @@ spec:
   source:
     path: helm/authapi
     repoURL: 'https://github.com/1ndistinct/authapi.git'
-    targetRevision: main
+    targetRevision: dev
   project: apps
 ---
 apiVersion: argoproj.io/v1alpha1
