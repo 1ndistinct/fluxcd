@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tekkit2
+spec:
+  destination:
+    name: ''
+    namespace: apps
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/tekkit2
+    repoURL: 'https://github.com/1ndistinct/tekkit2.git'
+    targetRevision: main
+  project: apps
