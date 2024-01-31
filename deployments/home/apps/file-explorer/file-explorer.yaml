@@ -27,7 +27,8 @@ spec:
               name: wireguard-ui
             - mountPath: /srv/wireguard
               name: wireguard
-
+            - mountPath: /srv/tekkit2
+              name: tekkit2
           name: file-explorer
       volumes:
       - name: pypi
@@ -48,6 +49,9 @@ spec:
       - name: wireguard
         persistentVolumeClaim:
           claimName: wireguard-pvc
+      - name: tekkit2
+        persistentVolumeClaim:
+          claimName: tekkit2
 ---
 apiVersion: v1
 kind: Service
