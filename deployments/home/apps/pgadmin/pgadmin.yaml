@@ -15,10 +15,6 @@ spec:
         name: runix-charts
         namespace: flux-system
   values:
-    persistentVolume:
-      size: 100Mi
-      storageClass: rook-cephfs
-      accessModes: ["ReadWriteMany"]
     service:
       type: NodePort
       nodePort: 31001
