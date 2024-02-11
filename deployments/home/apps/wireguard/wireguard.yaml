@@ -173,7 +173,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: wireguard-configmap
+  name: wireguard-config
   namespace: wireguard
 data:
   TZ: "Europe/London"
