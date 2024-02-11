@@ -31,10 +31,14 @@ spec:
           volumeMounts:
             - mountPath: /config/wg_confs
               name: wireguard-pv
+            - name: host-volumes
+              mountPath: /lib/modules
           name: wireguard
           envFrom:
             - secretRef:
                 name: wireguard
+            - configMapRef:
+                name: wireguard-config
           ports:
             - containerPort: 51820
           securityContext:
@@ -47,6 +51,10 @@ spec:
       - name: wireguard-pv
         persistentVolumeClaim:
           claimName: wireguard-pvc
+      - name: host-volumes
+        hostPath:
+          path: /lib/modules
+          type: Directory
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -76,12 +84,6 @@ spec:
                 name: wireguard
           ports:
             - containerPort: 5000
-          securityContext:
-            capabilities:
-              add:
-              - NET_ADMIN
-              - SYS_MODULE
-            privileged: true
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -98,6 +100,7 @@ spec:
       - name: wireguard-ui-db
         persistentVolumeClaim:
           claimName: wireguard-ui-db
+
 ---
 apiVersion: v1
 kind: Service
@@ -166,3 +169,14 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wireguard-configmap
+  namespace: wireguard
+data:
+  TZ: "Europe/London"
+  PEERS: "2"
+  PEERDNS: "10.152.183.10" ## kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'
+  ALLOWEDIPS: "0.0.0.0/0, ::/0"
