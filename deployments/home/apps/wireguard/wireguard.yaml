@@ -32,7 +32,7 @@ spec:
             - configMapRef:
                 name: wireguard-config
           ports:
-            - containerPort: 31500
+            - containerPort: 51820
           securityContext:
             capabilities:
               add:
@@ -56,9 +56,9 @@ spec:
     app: wireguard
   ports:
     - name: vpn
-      port: 31500
+      port: 51820
       protocol: UDP
-      targetPort: 31500
+      targetPort: 51820
       nodePort: 31500
 ---
 apiVersion: v1
