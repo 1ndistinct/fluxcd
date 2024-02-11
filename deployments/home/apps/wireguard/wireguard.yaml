@@ -73,7 +73,7 @@ data:
   TZ: "Europe/London"
   PEERDNS: "10.152.183.10" ## kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'
   PEERS: "ciaranLaptop,joLaptop"
-  ALLOWEDIPS: "0.0.0.0/0, ::/0"
+  ALLOWEDIPS: "10.13.13.0/24, 10.152.183.0/24"
   INTERNAL_SUBNET: "10.13.13.0"
   PUID: "1000"
   PGID: "1000"
