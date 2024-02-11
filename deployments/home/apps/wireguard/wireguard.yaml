@@ -29,10 +29,8 @@ spec:
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
-            - mountPath: /config/wg_confs
+            - mountPath: /config
               name: wireguard-pv
-            - name: host-volumes
-              mountPath: /lib/modules
           name: wireguard
           envFrom:
             - secretRef:
@@ -51,10 +49,7 @@ spec:
       - name: wireguard-pv
         persistentVolumeClaim:
           claimName: wireguard-pvc
-      - name: host-volumes
-        hostPath:
-          path: /lib/modules
-          type: Directory
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -178,8 +173,8 @@ metadata:
 data:
   TZ: "Europe/London"
   PEERDNS: "10.152.183.10" ## kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'
-  PEERS: "2"
   ALLOWEDIPS: "0.0.0.0/0, ::/0"
   INTERNAL_SUBNET: "10.13.13.0"
   PUID: "1000"
   PGID: "1000"
+  PEERS: "2"
