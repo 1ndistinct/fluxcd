@@ -13,15 +13,6 @@ spec:
       labels:
         app: wireguard
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: internet-exposed
-                operator: In
-                values:
-                - "true"
       containers:
         - image: linuxserver/wireguard:latest
           volumeMounts:
@@ -48,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wireguard-external
+  name: wireguard
   namespace: apps
 spec:
   type: NodePort
