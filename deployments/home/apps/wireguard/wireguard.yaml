@@ -177,6 +177,8 @@ metadata:
   namespace: wireguard
 data:
   TZ: "Europe/London"
-  PEERS: "2"
   PEERDNS: "10.152.183.10" ## kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'
   ALLOWEDIPS: "0.0.0.0/0, ::/0"
+  INTERNAL_SUBNET: "10.252.1.0"
+  PUID: "1000"
+  PGID: "1000"
