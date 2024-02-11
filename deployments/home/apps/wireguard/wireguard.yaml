@@ -1,7 +1,3 @@
-### https://unix.stackexchange.com/questions/607004/cant-access-services-on-server-using-its-public-ip-after-starting-wireguard
-### How to get internet access
-#### POST UP: sysctl -w -q net.ipv4.ip_forward=1;iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule add from 10.252.1.0/24 lookup main
-#### POST DOWN:  sysctl -w -q net.ipv4.ip_forward=0;iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE;  ip rule del from 10.252.1.0/24 lookup main
 
 apiVersion: apps/v1
 kind: Deployment
@@ -33,12 +29,10 @@ spec:
               name: wireguard-pv
           name: wireguard
           envFrom:
-            - secretRef:
-                name: wireguard
             - configMapRef:
                 name: wireguard-config
           ports:
-            - containerPort: 51820
+            - containerPort: 31500
           securityContext:
             capabilities:
               add:
@@ -49,52 +43,6 @@ spec:
       - name: wireguard-pv
         persistentVolumeClaim:
           claimName: wireguard-pvc
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: wireguard-ui
-  namespace: apps
-spec:
-  selector:
-    matchLabels:
-      app: wireguard-ui
-  template:
-    metadata:
-      labels:
-        app: wireguard-ui
-    spec:
-      restartPolicy: Always
-      containers:
-        - image: ngoduykhanh/wireguard-ui:latest
-          volumeMounts:
-            - mountPath: /etc/wireguard
-              name: wireguard-pv
-            - mountPath: /app/db
-              name: wireguard-ui-db
-          name: wireguard-ui
-          envFrom:
-            - secretRef:
-                name: wireguard
-          ports:
-            - containerPort: 5000
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: internet-exposed
-                operator: In
-                values:
-                - "true"   
-      volumes:
-      - name: wireguard-pv
-        persistentVolumeClaim:
-          claimName: wireguard-pvc
-      - name: wireguard-ui-db
-        persistentVolumeClaim:
-          claimName: wireguard-ui-db
 
 ---
 apiVersion: v1
@@ -108,55 +56,15 @@ spec:
     app: wireguard
   ports:
     - name: vpn
-      port: 51820
+      port: 31500
       protocol: UDP
-      targetPort: 51820
+      targetPort: 31500
       nodePort: 31500
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: wireguard-ui-external
-  namespace: apps
-spec:
-  type: NodePort
-  selector:
-    app: wireguard-ui
-  ports:
-    - name: ui
-      port: 5000
-      protocol: TCP
-      targetPort: 5000
-      nodePort: 31502
----
-# Source: llama/templates/secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: wireguard
-  namespace: apps
-type: Opaque
-data:
-  WGUI_PASSWORD: cGFzc3dvcmQ=
-  WGUI_USERNAME: YWRtaW4=
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: wireguard-pvc
-spec:
-  storageClassName: rook-cephfs
-  accessModes: 
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wireguard-ui-db
 spec:
   storageClassName: rook-cephfs
   accessModes: 
@@ -173,8 +81,9 @@ metadata:
 data:
   TZ: "Europe/London"
   PEERDNS: "10.152.183.10" ## kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'
+  PEERS: "ciaran-laptop,jo-laptop"
   ALLOWEDIPS: "0.0.0.0/0, ::/0"
   INTERNAL_SUBNET: "10.13.13.0"
   PUID: "1000"
   PGID: "1000"
-  PEERS: "2"
+  SERVERPORT: "31500"
