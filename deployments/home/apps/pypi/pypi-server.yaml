@@ -20,19 +20,3 @@ spec:
     persistence:
       storageClassName: rook-cephfs
       size: 500Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: pypi-external
-spec:
-  type: NodePort
-  selector:
-    app.kubernetes.io/instance: pypi-server
-    app.kubernetes.io/name: pypi-server
-  ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: http
-      nodePort: 30500

@@ -25,7 +25,3 @@ spec:
       persistence:
         size: 3Gi
         accessModes: ["ReadWriteMany"]
-      service:
-        type: NodePort 
-        nodePorts:
-          redis: 32000

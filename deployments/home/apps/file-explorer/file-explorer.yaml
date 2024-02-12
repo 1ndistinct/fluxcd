@@ -49,7 +49,7 @@ metadata:
   name: file-explorer
   namespace: apps
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: file-explorer
   ports:
@@ -57,4 +57,3 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 80
-      nodePort: 31503

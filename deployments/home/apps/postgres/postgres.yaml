@@ -25,7 +25,3 @@ spec:
       persistence:
         size: 5Gi
         accessModes: ["ReadWriteMany"]
-      service:
-        type: NodePort
-        nodePorts:
-          postgresql: 31000

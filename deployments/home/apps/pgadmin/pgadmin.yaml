@@ -15,7 +15,6 @@ spec:
         name: runix-charts
         namespace: flux-system
   values:
-    service:
-      type: NodePort
-      nodePort: 31001
+    persistentVolume:
+      enabled: false
 
