@@ -25,8 +25,6 @@ spec:
   values:
     server:
       service:
-        type: NodePort
+        type: ClusterIP
         servicePortHttps: 443
         servicePortHttp: 80
-        nodePortHttp: 30000
-        nodePortHttps: 30001
