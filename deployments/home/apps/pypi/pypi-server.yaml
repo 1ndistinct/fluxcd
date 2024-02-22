@@ -20,3 +20,19 @@ spec:
     persistence:
       storageClassName: rook-cephfs
       size: 500Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pypi-lb
+  namespace: apps
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector: 
+    app.kubernetes.io/instance: pypi-server
+    app.kubernetes.io/name: pypi-server
