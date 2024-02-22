@@ -16,6 +16,10 @@ spec:
         namespace: flux-system
   values:
     pod:
+      securityContext: 
+        fsGroup: 0
+        runAsUser: 0
+        runAsGroup: 0
       replicas: 1
     persistence:
       storageClassName: rook-cephfs
