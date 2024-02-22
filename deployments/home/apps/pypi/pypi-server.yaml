@@ -24,6 +24,3 @@ spec:
     persistence:
       storageClassName: rook-cephfs
       size: 400Mi
-
-    ingress:
-      enabled: true
