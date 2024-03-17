@@ -17,4 +17,8 @@ spec:
   values:
     persistentVolume:
       enabled: false
-
+    envVarsExtra:
+      - name: PGADMIN_CONFIG_SERVER_MODE
+        value: 'False'
+      - name: PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED
+        value: 'False'
