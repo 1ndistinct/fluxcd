@@ -30,8 +30,7 @@ spec:
         servicePortHttp: 80
     configs:
       cm: 
-        admin:
-          enabled: false
+        admin.enabled: false
         url: https://argocd-server.argocd.svc.cluster.local
         oidc.config: |
               name: Ciaran
