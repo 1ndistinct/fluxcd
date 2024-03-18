@@ -28,3 +28,16 @@ spec:
         type: ClusterIP
         servicePortHttps: 443
         servicePortHttp: 80
+    configs:
+      cm: 
+        url: https://argocd-server.argocd.svc.cluster.local
+        oidc.config: |
+              name: Ciaran
+              issuer: http://authapi.apps.svc.cluster.local:8000
+              clientID: 94221717-e022-4d82-b90d-e83fece477c9
+              clientSecret: $oidc.ciaran.clientSecret
+              requestedScopes:
+                - openid
+                - profile
+                - email
+              getUserInfo: true
