@@ -12,18 +12,3 @@ spec:
     repoURL: 'https://github.com/1ndistinct/authapi.git'
     targetRevision: dev
   project: apps
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: authui
-spec:
-  destination:
-    name: ''
-    namespace: apps
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: helm/authui
-    repoURL: 'https://github.com/1ndistinct/authui.git'
-    targetRevision: main
-  project: apps
