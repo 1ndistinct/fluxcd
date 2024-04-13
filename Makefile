@@ -19,3 +19,6 @@ create-regcred:
 	kubectl -n apps create secret generic regcred \
     --from-file=.dockerconfigjson=/home/ciaran/.docker/config.json \
     --type=kubernetes.io/dockerconfigjson
+
+apply-pgadmin-oidc:
+	kubectl apply -f pgadmin-oidc.yaml
