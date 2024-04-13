@@ -30,16 +30,16 @@ data:
             'OAUTH2_BUTTON_COLOR': '#000000'
         }
     ]
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: pgadmin-authapi-config
-  namespace: apps
-stringData:
-  CLIENT_ID: <SECRET>
-  CLIENT_SECRET: <SECRET>
-  JWKS_SERVER_URL: authapi.apps.svc.cluster.local:8000
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: pgadmin-authapi-config
+#   namespace: apps
+# stringData:
+#   CLIENT_ID: <SECRET>
+#   CLIENT_SECRET: <SECRET>
+#   JWKS_SERVER_URL: authapi.apps.svc.cluster.local:8000
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
