@@ -53,5 +53,6 @@ spec:
         mountPath: /pgadmin4/config_local.py
         subPath: config_local.py
         readOnly: false
+        configMap: pgadmin-config
     persistentVolume:
       enabled: false
