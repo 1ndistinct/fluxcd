@@ -12,7 +12,7 @@ data:
     logging.info("Client ID: %s",client_id)
 
     AUTHENTICATION_SOURCES = ['oauth2']
-
+    MASTER_PASSWORD_REQUIRED=False
     OAUTH2_AUTO_CREATE_USER = True
 
     OAUTH2_CONFIG = [
