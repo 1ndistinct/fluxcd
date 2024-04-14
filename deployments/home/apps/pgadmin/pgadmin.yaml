@@ -28,6 +28,7 @@ data:
             'OAUTH2_SCOPE': 'openid email profile',
             'OAUTH2_ICON': 'fa-lock',
             'OAUTH2_BUTTON_COLOR': '#000000'
+            'OAUTH2_SERVER_METADATA_URL':  f'http://{idp_url}/.well-known/openid-configuration',
         }
     ]
 # ---
