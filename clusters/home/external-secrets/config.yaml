@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: external-secrets
+  name: external-secrets-config
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: external-secrets-namespace
-  path: "./deployments/home/external-secrets/operator"
+    - name: external-secrets-operator
+  path: "./deployments/home/external-secrets/config"
   sourceRef:
     kind: GitRepository
     name: flux-system
