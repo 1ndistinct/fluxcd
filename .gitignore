@@ -2,3 +2,4 @@
 **/regcred.yaml
 **/config_local.py
 **/pgadmin-oidc.yaml
+**/external-secrets.yaml
