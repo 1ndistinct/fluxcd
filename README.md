@@ -40,3 +40,12 @@ stringData:
 - `PostUp = sysctl -w -q net.ipv4.ip_forward=1; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE`
 - `PostDown = sysctl -w -q net.ipv4.ip_forward=0; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE`
 - Find cluster DNS to set client DNS to: `kubectl -n kube-system get svc | grep kube-dns | awk '{print $3}'`
+
+#### Using sealed secrets 
+1. Install [kubeseal](https://github.com/bitnami-labs/sealed-secrets?tab=readme-ov-file#linux)
+2. Fetch the Sealed Secrets Public Key - kubeseal uses the public key from the Sealed Secrets controller running in your Kubernetes cluster to encrypt the secret. Fetch the public key using:
+  - `kubeseal --controller-namespace sealed-secrets --controller-name sealed-secrets --fetch-cert > publickey.pem`
+3. template secret into a yaml file for encryption. call it `mysecret.yaml` in this example
+4. seal the secret
+  - `kubeseal --format yaml < mysecret.yaml --cert publickey.pem > mysealedsecret.yaml`
+5. You can then commit and push the sealed secret

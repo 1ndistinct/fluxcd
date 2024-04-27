@@ -13,14 +13,3 @@ spec:
         kind: HelmRepository
         name: external-secrets
         namespace: flux-system
----
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: aws-external-secrets-creds
-#   namespace: external-secrets
-# type: Opaque
-# data:
-#   aws_access_key_id: PGJhc2U2NC1lbmNvZGVkLWFjY2Vzcy1rZXktaWQ+
-#   aws_secret_access_key: PGJhc2U2NC1lbmNvZGVkLXNlY3JldC1hY2Nlc3Mta2V5Pg==
-
