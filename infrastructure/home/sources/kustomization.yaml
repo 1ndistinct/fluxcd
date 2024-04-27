@@ -6,6 +6,7 @@ resources:
 - grafana.yaml
 - prometheus-community.yaml
 - pgadmin.yaml
-- redis.yaml
 - pypi-server.yaml
+- redis.yaml
 - rook-ceph.yaml
+- sealed-secrets.yaml
