@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: external-secrets
-  namespace: external-secrets
+  name: sealed-secrets
+  namespace: sealed-secrets
 spec:
   interval: 1m
   chart:
