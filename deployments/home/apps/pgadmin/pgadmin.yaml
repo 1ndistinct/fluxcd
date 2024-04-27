@@ -31,16 +31,21 @@ data:
             'OAUTH2_SERVER_METADATA_URL':  f'http://{idp_url}/.well-known/openid-configuration',
         }
     ]
-# ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: pgadmin-authapi-config
-#   namespace: apps
-# stringData:
-#   CLIENT_ID: <SECRET>
-#   CLIENT_SECRET: <SECRET>
-#   JWKS_SERVER_URL: authapi.apps.svc.cluster.local:8000
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: pgadmin-authapi-config
+  namespace: apps
+spec:
+  encryptedData:
+    CLIENT_ID: AgCu+DO2T4gG/OCJzmox6wIHlevk8MNhaGOWYcHUkHNC9hh2zHc8uxBcjdYSb+2Z6lf14VkKwH/+zTEtpC9JhxSbllQleloH8TRHUjGnrAvibu7Q6c8z+r3xtAw1xLj0/He8uMGW2paupVzwFLPThFn7lqVDQhZfZvf7sRUYcCLrvB0H3NPIEJF61dec7Y24Trf1iyu6IRT2edcLneQZ8nE+Vsy+XG63Uc0TMUCXrlZiiEFPRABl/h+Ic4o2v3UrJr0AozDTHxZl/8ArN09wqFdSeAxmgvz2mEllUGn1ZLHTStK1wxuPhLvdM3tK6AvO7ybmvoz3Z0z5RBx3zFt43q94icNIJSFldF/FcB/Hi+gValHb7RvkxoPxQM3Wl6F2P9Njy24Mfxh2EVFyvizRcpLzJJiHM8vpCkepqVyS+gEyMhpMu216JqUgWod31brGy/3opqKF0q3SYXZJAiTyGb23knu7VykB+ixWiQLrUuLBrD0BwFmeBXfPnRw/Alxl4j/q99NA7Z9XBCu237IGKdDXVeX9akBrbwAM2L81oHdHdcHtnLTw2RyF/BMUDQL83AVjjUyhpMofM7X0ZIIRzOTPRoRuOU3OKQyfQNP1TFgpD6YBJ7Jf/VZO2mp5i5RYlewezrBrX9DmlQEC3mD8rIiloTRxMCWRzPwyTI1hRpD45A6DqFg5VWqyGYhWxHklnVoyB2yUnfyjswg9iEs+ZdluKzmwEpRZ98zemKeSX5MLAiuo1eU=
+    CLIENT_SECRET: AgBBIhVKCMX9pXAvrec3j+LQj3Zs0ACvBJP7nzTAmeYGcAUSHiCQqBCe13F1TUlKtaDyqgapvGZwCodgCHpnaV4ltN0fKnOVr0ItNDjIYediNNIuY1C5kFVuWKgJdN8KjoeMEOgEX/xThxFl42CKSZ+TapbihC6LFJSLLKi2ZJzqVyMjR+BcUvNeFQzIFVz/DcI6txYmMSCHcODRaZqWVHexNfWaXWY0cljzB0tflfO4i1ESx+C08BTYqVezAg63IRnuwR3x1R+dUUBFR/VFC1ZCFyPo/CmHkCZn/BKsLl3SfPN8v42nvmYN/9AZuLB9P64yoAQfR1TiX2ZOAr3JfbqtnT4fosbrBgOq/aEZWEmZjGaN658rMKIpbACntS9gNmnguW5utc+dU3KA3QVtojN/j8aLAPaMRbijVVrnIGGauqObL2V0eE1womB5UQrRoefk5OGKgNHpSRfeu1A1buRbB4oriPVBEDy5jC2mWDUeC3WFZ/Wx5F+4VmfxkH/vpqTnRuxCkGyh5Uiv82UOX5j5riQlumcbU1xRCnKBV+4WchptUod9mFB4PHcwVKomgX4ut9UwWY3DbHE2mmhdmpaHH1NIPXx/4VSYC+XVrf0nPpF7WIiorKKk/eFqf5f2PHV2zdrgzTrRIQiwxv/lQeO0wQd12faDxrwlIJ4fgJlEYdgHTDGVYZzbduSqeegDlxvP/SQK9it6cat2syAN1sfNiN9JGD1eYnyLpGsyKJFPB+jOJQ/sUxbv8ojp
+    JWKS_SERVER_URL: AgBo8P1FCvKTqaPiTvk4aoAITOwAzgPOY8ZjifwcVkJFOdXw/Gyuvy37nxqAln8b25daqkTRf52nNyxroL1UMVpfgjBfSRn1M4SdM/qWwBBuXUsHtiz214KQu74eE49WZ9gpb/ts2/EloO3HVi1mg8YKUUZT+yiZxI4Zt2ra2WFlSo4YH6Q1qH3s+X/i3OOtgdmjG4wyUHd2wor8SmFN/T4k00JdmbVsxZqsv/57TRD4HPZcmkFsTWqDZM+VcRjB6cYtj0VE2e0zPWa4+anunbiNOpOtDdOXKcASXh2Bph24bLBSVZ6Far5kIG8m4lOQiXlzovORyzZ+ngkDPr3+zhLxE3/SlizA1nZZEt3ZdOKNLrvTLp0qSkZya+iFqh2oSRz+FWmPCiU3YP64JdnUoYTc6jNdLB8tTr1qB+Pa4SGKn1I45Irzwu5kcNDOSdtHuDnXEKbFUwbd/Er7ZYAVmd1z99KnwUZEUSu8vWFmH7zkuw3H9RySL5X4Tikk+0UPP0lt41P2wwzSUjjxIkAKhFmCyWCO31ujMwZYV7tPdNy2oTsQdyp/6kj5j305Bb+fcZpRQ34u5qDQ5Hb3XZ8r5UcbeUx9QAY5TXW1YGmg6S2HY83lMzwuOq/fV+AD5jz0JVkR7AOTbRRW0nt7NLniLsMbS491UaZmB3RvlZaBLuznDuTvybCmRwYRwsJc3QHFF3IG1mw1qRiS+0dUeSVZ0LHQwRfeYAudmhVJ51mWwmSgYBm2EQ==
+  template:
+    metadata:
+      name: pgadmin-authapi-config
+      namespace: apps
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
