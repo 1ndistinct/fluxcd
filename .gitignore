@@ -4,3 +4,4 @@
 **/pgadmin-oidc.yaml
 **/external-secrets.yaml
 **/publickey.pem
+**/mysealedsecret.yaml

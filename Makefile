@@ -22,3 +22,9 @@ create-regcred:
 
 apply-pgadmin-oidc:
 	kubectl apply -f pgadmin-oidc.yaml
+
+fetchkey:
+	kubeseal --controller-namespace sealed-secrets --controller-name sealed-secrets --fetch-cert > publickey.pem
+
+seal:
+	kubeseal --format yaml < ${secret} --cert publickey.pem > mysealedsecret.yaml

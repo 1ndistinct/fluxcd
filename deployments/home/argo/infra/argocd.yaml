@@ -1,3 +1,20 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: argocd-oidc-secret
+  namespace: argocd
+spec:
+  encryptedData:
+    oidc.ciaran.clientSecret: AgBaVJHn0jMqMuTjlIDAFxWQ1LEQvv7vcC6GQqwyZe3EedUTX733IRQe5LEhYXIkR8Rk4NjFPr9q+Ie38tk3xTPtol43fGOjdNxi1Eo8+i5fI84EFBclQAn3aabKzOZ8zgDkXvNH7JI6DicaCOvwcTlNTxx6QV/F9Hi7T8l2HuGqnebfcOTRinXiZX2LZ7et9idbOHAP1cR+dcYOrdGCuWJEIgbbqMgz61JKSfNkfi4MndTcMI86wQvXues5vlNe//v7STC696ncxJPNeFSoqpp/WyglYpKYTXNZ3hRknReysB6hHlGiFtc6lQXrPA3LSWTDnfgyKO+gI4S3Zhr/Q38jvnpfqios/vhorFnmkPf4g22/lBzVV4gJPGPaLvK7s7gSD/7OtvS3PZDts63B/vBFH2oizFx69yxS6Tw5f9Rb4CHsGhmcxZMeau+K+bIWiHvWTdzBqPXIt+CVcro7mM679Em0fgPY493h53V1AyUSI5pKUJnuwcrm4IZ3Y68Z7dtlGGY3+vB8HRU7+/IqVdV0qrVnteBBR5puf0kM+Q0DVDyfmqxbjfuMSAk3vEDbKispurvEpGaxIWyY2N8Zm5mR0TIODEHk/v7M3ivr5YRFV+ZaWmZowUw2P9PI6Z0AroRvnSvXkH0qS+dqp+UyV4GaGCVakoDMsBUWWiW4THMFhMhfe7Qd6JcKYWNkA2srzDlzes932adAWOnomv5gyoqlVR5chxpm2OduJymuSua/YuIH95PC1iyJX2A5
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: argocd
+      name: argocd-oidc-secret
+      namespace: argocd
+    type: Opaque
+
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -36,7 +53,7 @@ spec:
               name: Ciaran
               issuer: http://authapi.apps.svc.cluster.local:8000
               clientID: 94221717-e022-4d82-b90d-e83fece477c9
-              clientSecret: $oidc.ciaran.clientSecret
+              clientSecret: $argocd-oidc-secret:oidc.ciaran.clientSecret
               requestedScopes:
                 - openid
                 - profile
