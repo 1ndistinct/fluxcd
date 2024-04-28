@@ -23,8 +23,8 @@ data:
   values.yaml: |
     configuration:
       backupStorageLocation:
-        - provider: aws
-          name: aws
+        - name: aws
+          provider: aws
           bucket: infrastructure-staging-euw2-cluster-backup-732617013467
           config:
             region: eu-west-2
@@ -36,6 +36,16 @@ data:
     credentials:
       existingSecret: velero-credentials
     deployNodeAgent: true
+    schedules:
+      weekly-backup:
+        disabled: false
+        schedule: "0 0 * * 0"
+        useOwnerReferencesInBackup: true
+        template:
+          ttl: "240h"
+          storageLocation: aws
+          includedNamespaces:
+          - "*"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
