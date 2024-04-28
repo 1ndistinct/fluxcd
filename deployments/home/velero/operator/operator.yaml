@@ -23,11 +23,11 @@ data:
   values.yaml: |
     configuration:
       backupStorageLocation:
-        provider: velero.io/aws
-        name: aws-data-backup
-        bucket: infrastructure-staging-euw2-cluster-backup-732617013467
-        config:
-          region: eu-west-2
+        - provider: velero.io/aws
+          name: aws-data-backup
+          bucket: infrastructure-staging-euw2-cluster-backup-732617013467
+          config:
+            region: eu-west-2
       volumeSnapshotLocation:
         - name: aws-pv-backup
           provider: velero.io/aws
