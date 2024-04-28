@@ -23,6 +23,7 @@ data:
   values.yaml: |
     configuration:
       features: EnableCSI
+      defaultVolumesToFsBackup: true
       backupStorageLocation:
         - name: default
           provider: aws
