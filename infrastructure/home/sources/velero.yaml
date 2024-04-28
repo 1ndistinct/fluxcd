@@ -1,3 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: piraeus-charts
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  url: https://piraeus.io/helm-charts/
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository

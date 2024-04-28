@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: velero-operator
+  name: external-snappshotter-for-velero
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: external-snappshotter-for-velero
-  path: "./deployments/home/velero/operator"
+    - name: velero-namespace
+  path: "./deployments/home/velero/external-snapshotter"
   sourceRef:
     kind: GitRepository
     name: flux-system
