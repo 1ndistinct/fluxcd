@@ -10,3 +10,4 @@ resources:
 - redis.yaml
 - rook-ceph.yaml
 - sealed-secrets.yaml
+- velero.yaml

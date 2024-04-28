@@ -1,0 +1,64 @@
+
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: velero-credentials
+  namespace: velero
+spec:
+  encryptedData:
+    cloud: AgCGgXZc6wziMXGpej3MWOW6PHHJapGyygawpOs+/80aF0VZEvyZjXUP5EqVaJcOpMbMu0P8OlzVAs5hesaMR5MBuwMS+oZJsn91TjxI9GUPeqV2mb6coF/Cvi4NDUeTjK90wmBD4VZxjyiw1IolxIAP8malywC40WY+wvBT7m9xk0nuAFPxTg7CwTLy8aPDM3+3MfoCA/vIT42eD1t+On/l6nFl82CSLc12Gurc2p+1Vmgt+6bTU4OmY+BLuhI4/K2+ktjYuQxmp0GjH6zVIcBcx+o+PxbEd62dZimvAT/ZlYOpmQ4OrQRQ+srDBf9yVfR8xfq2rwC1JFBSu77SzDN1BWT225go+VlAin+XrixPvb51/KIN+bbsKLKJ+s4xYTFvyUJG8b/hKKPe8AgrpXW/q7H6Qdr8xPhfl0fxvPotRoaeQY0yBbGtYOgMD9TizYZWqR6PD1FQKMkHruhuIhg35lgjzW1+hRD1caQrtCBufAbwm0zJN+JfyAHazjgS5GDwxECwtGIJylsiSF+5fK3HT8NEowQIU8epRYoQQYMcTVjIdPhmRg6Ht9HzsN4Dexrrede3Bt6BZCW1+lia6TqHOz/Zdlk4fNahZJ1RTEsrl/QUu5XJdfmv6luyl/LvpBVG7msf3q4Bzj54dDEqFQI6CMNJG8l5Cwt2aCJ7nsKRthC+FRJ2b4F8vvcdrYvgrm3ASQdlRannYLjemJBLrqUQIT6zmkbfdoKMvzimFFVSJAe0DGLRxFC6X1qNW30w1eY2N9LjXNukmj96ZHU3IYX3PulDN0H1yCJMmZe3f5tWQ+/KLgSSsIbUuDIdlRiCnnPZtba2Dekpm9xN3sUC/PU=
+  template:
+    metadata:
+      name: velero-credentials
+      namespace: velero
+    type: Opaque
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: velero-values
+  namespace: velero
+data:
+  values.yaml: |
+    configuration:
+      provider: aws
+      backupStorageLocation:
+        name: aws
+        bucket: infrastructure-staging-euw2-cluster-backup-732617013467
+        config:
+          region: eu-west-2
+    credentials:
+      useSecret: true
+      secretContents:
+        cloud: /credentials/cloud
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.2.1
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: velero
+      version: "6.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: velero-values
+      namespace: velero
+    - kind: Secret
+      name: velero-credentials
+      namespace: velero
