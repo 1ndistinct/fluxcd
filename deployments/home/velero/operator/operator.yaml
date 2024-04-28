@@ -73,7 +73,10 @@ metadata:
 driver: rook-ceph.cephfs.csi.ceph.com
 deletionPolicy: Delete
 parameters:
-  clusterID: rook-ceph  # This should match your Rook deployment namespace if it is different
+  clusterID: rook-ceph
+  csi.storage.k8s.io/snapshotter-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/snapshotter-secret-namespace: rook-ceph
+
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
