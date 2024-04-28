@@ -84,12 +84,12 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: velero-values
----
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshotClass
-metadata:
-  name: cephfs-snapclass
-driver: rook-ceph.cephfs.csi.ceph.com
-deletionPolicy: Delete
-parameters:
-  clusterID: rook-ceph  # This should match your Rook deployment namespace if it is different
+# ---
+# apiVersion: snapshot.storage.k8s.io/v1
+# kind: VolumeSnapshotClass
+# metadata:
+#   name: cephfs-snapclass
+# driver: rook-ceph.cephfs.csi.ceph.com
+# deletionPolicy: Delete
+# parameters:
+#   clusterID: rook-ceph  # This should match your Rook deployment namespace if it is different
