@@ -50,5 +50,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: velero-values
-    - kind: Secret
-      name: velero-credentials
