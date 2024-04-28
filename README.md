@@ -49,3 +49,7 @@ stringData:
 4. seal the secret
   - `kubeseal --format yaml < mysecret.yaml --cert publickey.pem > mysealedsecret.yaml`
 5. You can then commit and push the sealed secret
+
+#### TODOS:
+
+- swap postgres secrets to external secrets
