@@ -58,7 +58,5 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: velero-values
-      namespace: velero
     - kind: Secret
       name: velero-credentials
-      namespace: velero
