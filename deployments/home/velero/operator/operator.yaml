@@ -53,7 +53,7 @@ spec:
       version: "6.0.0"
       sourceRef:
         kind: HelmRepository
-        name: velero
+        name: vmware-tanzu
         namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
