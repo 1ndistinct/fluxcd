@@ -29,15 +29,7 @@ data:
         config:
           region: eu-west-2
     credentials:
-      useSecret: true
-      secretContents:
-        cloud: /credentials/cloud
-    initContainers:
-      - name: velero-plugin-for-aws
-        image: velero/velero-plugin-for-aws:v1.2.1
-        volumeMounts:
-          - mountPath: /target
-            name: plugins
+      existingSecret: velero-credentials
 
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
