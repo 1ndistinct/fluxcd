@@ -26,6 +26,7 @@ data:
         - name: default
           provider: aws
           bucket: infrastructure-staging-euw2-cluster-backup-732617013467
+          prefix: velero
           config:
             region: eu-west-2
       volumeSnapshotLocation:
