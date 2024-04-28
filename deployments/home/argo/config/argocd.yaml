@@ -118,20 +118,6 @@ metadata:
   namespace: argocd
 type: Opaque
 ---
-apiVersion: v1
-stringData:
-  type: git
-  url: https://github.com/1ndistinct/storage.git
-kind: Secret
-metadata:
-  annotations:
-    managed-by: argocd.argoproj.io
-  labels:
-    argocd.argoproj.io/secret-type: repository
-  name: storage
-  namespace: argocd
-type: Opaque
----
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -150,7 +136,6 @@ spec:
   - https://github.com/GipsyLogic/looksrare.git
   - https://github.com/1ndistinct/authapi.git
   - https://github.com/1ndistinct/tekkit2.git
-  - https://github.com/1ndistinct/storage.git
   # - https://github.com/1ndistinct/todo.git
   # - https://github.com/1ndistinct/todo-ui.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster
