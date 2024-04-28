@@ -43,8 +43,11 @@ data:
         schedule: "0 0 * * 0"
         useOwnerReferencesInBackup: true
         template:
-          ttl: "240h"
+          ttl: "720h"
           storageLocation: aws
+          snapshotVolumes: true
+          volumeSnapshotLocations:
+            - default
           includedNamespaces:
           - "*"
     initContainers:
