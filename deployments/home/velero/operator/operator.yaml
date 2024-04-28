@@ -44,8 +44,9 @@ data:
         useOwnerReferencesInBackup: true
         template:
           ttl: "720h"
-          storageLocation: aws
+          storageLocation: default
           snapshotVolumes: true
+          includeClusterResources: true
           volumeSnapshotLocations:
             - default
           includedNamespaces:
