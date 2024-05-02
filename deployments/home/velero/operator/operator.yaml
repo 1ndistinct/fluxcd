@@ -42,7 +42,7 @@ data:
     schedules:
       weekly-backup:
         disabled: false
-        schedule: "30 7 * * 4"
+        schedule: "45 6 * * 4"
         useOwnerReferencesInBackup: true
         template:
           ttl: "720h"

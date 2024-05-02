@@ -57,4 +57,5 @@ spec:
                 - openid
                 - profile
                 - email
+                - groups
               getUserInfo: true
