@@ -107,6 +107,20 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
+  url: https://github.com/1ndistinct/aws-resource-manager.git
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: aws-resource-manager
+  namespace: argocd
+type: Opaque
+---
+apiVersion: v1
+stringData:
+  type: git
   url: https://github.com/1ndistinct/tekkit2.git
 kind: Secret
 metadata:
@@ -136,7 +150,7 @@ spec:
   - https://github.com/GipsyLogic/looksrare.git
   - https://github.com/1ndistinct/authapi.git
   - https://github.com/1ndistinct/tekkit2.git
-  # - https://github.com/1ndistinct/todo.git
+  - https://github.com/1ndistinct/aws-resource-manager.git
   # - https://github.com/1ndistinct/todo-ui.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:

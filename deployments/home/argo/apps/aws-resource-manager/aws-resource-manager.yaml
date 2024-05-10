@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-resource-manager
+spec:
+  destination:
+    name: ''
+    namespace: apps
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/aws-resource-manager
+    repoURL: 'https://github.com/1ndistinct/aws-resource-manager.git'
+    targetRevision: main
+  project: apps
