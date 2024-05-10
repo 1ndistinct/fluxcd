@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: apps
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/aws-resource-manager
