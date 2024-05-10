@@ -15,12 +15,23 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+  
     fullnameOverride: postgres
     auth:
       enablePostgresUser: true
     architecture: standalone
     global:
       storageClass: rook-cephfs
+      postgresql:
+        auth:
+          database: apps
+          username: apps
+          existingSecret: postgres
+          secretKeys:
+            adminPasswordKey: ROOT_PGPASSWORD
+            userPasswordKey: USER_PGPASSWORD
+
+
     primary:
       persistence:
         size: 5Gi
