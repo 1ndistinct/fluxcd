@@ -15,9 +15,8 @@ spec:
         name: cgsimmons-charts
         namespace: flux-system
   values:
-    auth:
-      secretName: pypi-server
-      secretKey: AUTH
+    # auth:
+    #   secretName: pypi-server
     pod:
       securityContext: 
         fsGroup: 0

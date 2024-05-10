@@ -71,6 +71,6 @@ spec:
         readOnly: false
         configMap: pgadmin-config
     persistentVolume:
-      enabled: false
+      enabled: true
     envVarsFromSecrets: 
       - pgadmin-authapi-config
