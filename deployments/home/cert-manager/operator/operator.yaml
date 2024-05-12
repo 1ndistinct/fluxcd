@@ -1,3 +1,22 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: cert-manager-creds
+  namespace: cert-manager
+spec:
+  encryptedData:
+    aws_access_key_id: AgCtkCSPjoD05cFZu9F5R/0qHwnDnjsXRsU3hpyyD4hQxhgMEZY8BdDDXnic3YlzRZD7itD0MonA0f9fss/j+FGK2cJN+8o0BUK1sscXpOeVMOWLI0WaLhbqBBx0zXE3Cesoa+XY6yciokBSb/hGinMqaCUm0LvMGDWH8CEmWeoMX64xSSAiUT4cI7V9Gxs/Em7K6z2ONUEDdame8iiY0196VnCJ4YXccdLADfBNUfLyscKRy/8jtvn4E5E21s7/TaNlPmiTla3Fx7Y5q06JfadRqUCAeUMTjJKPdYM+dQsw80DALqLbE72eT9S47WPBs4w2YEVVydE3bkIxb9hV4DMqI1t6JN81s4Bl3YxElcPK+knHYFxF5IVO0VFzJMI9e3dYoc6aZ/T+cbSA6OyVMStUgKEudZZaCfZYFTfJ03sLy8MPMB6nf0Y4uNnScP/KpRQqbzmwMVtCkaFomtaD8L9RTWRSWrcHHk+AlfsFILl0bUHBIyHTCmj49XMQZHVi6LWYXHE/764zCQ+ExHVlJvJXW+Qhi9Fso9jcIqZbfhQeqyipc1RjuQe4/BBs5t1By00BPdWDY+Ojohi1xmKUXXJgFwMVkj8iusRnEXq+oXEuanhBWFQCRkM5vHZ3wiQpevI6yB5N39Nzsbbk4Wcf2ppoEYD0g8i5k10VWyIt/LDP0AsEUlLLLCJB33ZopKWOjiHTqdpENdCccB61DyXZGOrSvbeGdw==
+    aws_secret_access_key: AgCC+vEAI0GI4tDiKyEK23YJ+Um+IPpdZlqf1lqzjBKB8w18KI7e/krXhk2077adxKbFw8cOU/doJ9NCqX0uOCMz0nQErkdQ8j+HEofgQdmTZmdb3RK0kcaXBZGJdHs589Szgog3IO22mDIAIHMveyJJGgEImRoTb7b4t2B9ckpCM1Fcx9MSmS7DoVQbE//w8GS/tJIKC/FMrcc17NDg55AZerMPG7rUxs7gqH9MmNSVojZyPnSw0la1xWyfH50pSgxbB+aHKVhVyzAAJXuyLmC+ysf1Hxwjav/06Am2eGMUBXAmEaGQGl7JDI7FC0sKlvk7S4VvafE2Vjpj/qOTlrwTm82vNHFiON3Vm4Fm3sXXhuF76F2FXCId4qIEtvjE1sNrS/RTlgFtv6u8+bR1zvaAkrY1/WpUIuWKAMzOsm1YoD1AevbqXstZUPpzrqgVdBqnLTfNISwbBd6kcq+w0NXPCMTV0ghYbbs+8PmWgZegO9yDKNrRpxwBvk4ygTkLZI7iZhC6aaK4zXB+cRyJFMwwHB8iZL3Tf4wZ0wHdEr5jrY10gtF/CSb2eO11nbK+gN8VB4X6mVP6/fiBQaqCWktTiIC2eOhisdHLv6RWPn/BAQIl2gfYutaqIFG3rJfbzcPCYxT2tMEAexRkCRbzsUZtn97MiMDCn44LIR8UZ/tyyyBGQFsRJO3my2Ac/MjIDd45IZqrYOSH46TA2vhkHZ/xXgdNtupfuLXKw7LkMHpbLbOmGD0gG2Y2
+  template:
+    metadata:
+      creationTimestamp: null
+      name: cert-manager-creds
+      namespace: cert-manager
+    type: Opaque
+
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -15,3 +34,46 @@ spec:
         namespace: flux-system
   values:
     installCRDs: true  
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-route53
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ciaranmckey@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-private-key
+    solvers:
+      - dns01:
+          route53:
+            region: "eu-west-2"
+            accessKeyIDSecretRef:
+              name: cert-manager-creds
+              key: aws_access_key_id
+            secretAccessKeySecretRef:
+              name: cert-manager-creds
+              key: aws_secret_access_key
+            hostedZoneID: "Z061744026X1CUF71V2PH"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-watergate-certificate
+  namespace: cert-manager
+spec:
+  secretName: wildcard-watergate-tls
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days
+  commonName: '*.thewatergategroups.com'
+  dnsNames:
+    - '*.thewatergategroups.com'
+    - thewatergategroups.com
+  issuerRef:
+    name: letsencrypt-route53
+    kind: ClusterIssuer
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
