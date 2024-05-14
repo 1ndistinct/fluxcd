@@ -1,0 +1,109 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: domain-management-creds
+  namespace: domain-management
+spec:
+  encryptedData:
+    aws_access_key_id: AgDFH4aMg9eMtAnqBwHUZONDXCcOYruClgQh/zZijRWqBaFUJ5ufAeTaabdsiI+vtF1a/L2W78MNjKDDI6LeTghNIYl5l2qz3U7ojD0ODZK6tQKD5E/j0pJruzmqgeeOMEKJOWmi2jO15GTSH/z2MdInaPCcGxG1d7lc8sdprhncbqMyRLw7NaGfqQ6O52YLF6BhkZ2enlAnlb9FfXTYsRHhZ+rqIu5MjRy/od94EgY69BLp2GDG3h5qrzmjl2RyyKzbLIsQiSspsZWdWNZSA5cndhxIMBv6xUKqf3ht8Cn7H6SBtVXgVtmDuS/FgjiDU6VsXk4YsDk5Ocj6S9Cc1nU2DKEs4kXbbab/Yhk3uBLXET3WLPrYa4v9xwH6wmcl3tegpTo4eNUjPeNI+MNj1FpXsd2O0tffx/ZOWtq8ZOF6q57Z+7nHjiptya9HPGH6qPY03epx6bt3Vu/5RVxOpdtbdxYp2yeFI5XMgr5lV3WuofL+lMqOgnoEroNdUpZo8SxyvOCswMbwvdlJDZHaWRV6JF9CN4xCkwqB4jjmpd70LDyUD4y7gqIzRQnvOog/gKe+oIrjOa5O1EXXoUg027Ob2QfqApg8/yWYJQFfW174U7n4lJU2gOELQuK7CXuCYlNQ2E/Xf/hs/fixsafxjI8CO2eLIEL94hcBhQIQz1HLU+BvrmG5bYzIhb4IMnP3LoJsVWO8uAQl0F/47NuULQJmIqkeCA==
+    aws_secret_access_key: AgAMMT1lOwAsLgM7dxCcSoDmpe/nKBIepjmqxB9iyA12ZkX82D4EWEop6Nteg5Fcf4GoQn1dXO8wdUvi/3yDVQyGorbR2pi91ZAgZGT9lZim3MVWnTjVFvJNPptevLVkjiQCpG/P5p1YMQwiJAf0c39mX1C9uOu1zBVK51TGjnWVekPrH79GenJyEaEVbwHNpGBQgaoh0BLIyvmlXH+DWComOTS9fs1ev07C3UjmXSO7XVjEEfKdkuq0j5z2uz2B253x+sE691NKN1e7IzU6Bj2vTm5r7iNmJQhZ38XYozwZ7GAG7A7uOSS1X4MmEDOkmR4HZcSnzfRL+fh/0lfQzf+11JJZliOjzxmWeYsvxpwHvRXrSv45SZFEHPMI26A6zLkYhIMgfhNVxigKTuExdcyduVSfmIQHGeniuwDpF2rbdWnWJe/wJXf/Leera7sn2Zzl4VgQSg+pO5cFQJ0I0/Eg4tupugKeo89NG2EJrih1NXr02eXOW4n/6mJ3kmWHakifek5CHOmD/tP+KCVimEfiwIUtcn0uKBb7r3v4n1fZqWgztUnDK3fJ/NARAs+IaqdgeWLOHV26b+OWHNoLNfprt66Kq80LFxTuTTe/xTY1374ygY5+fljp0/17j7WC0YcMpEkxFFWZB9N7sfei+3LecTBFJHLCarToVIWhPn6t1sfFXLtui3Djlq0fTI0dBZ0M02B7uCUYg71lIjfHk6BPYmqqGqhRoUxuXQfuj9s0BeGC2es/Sqok
+  template:
+    metadata:
+      creationTimestamp: null
+      name: domain-management-creds
+      namespace: domain-management
+    type: Opaque
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: domain-management
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: cert-manager
+      version: "1.14.5"
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+        namespace: flux-system
+  values:
+    installCRDs: true  
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-route53
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ciaranmckey@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-private-key
+    solvers:
+      - dns01:
+          route53:
+            region: "eu-west-2"
+            accessKeyIDSecretRef:
+              name: domain-management-creds
+              key: aws_access_key_id
+            secretAccessKeySecretRef:
+              name: domain-management-creds
+              key: aws_secret_access_key
+            hostedZoneID: "Z061744026X1CUF71V2PH"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-watergate-certificate
+  namespace: domain-management
+spec:
+  secretName: wildcard-watergate-tls
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days
+  commonName: '*.thewatergategroups.com'
+  dnsNames:
+    - '*.thewatergategroups.com'
+    - thewatergategroups.com
+  issuerRef:
+    name: letsencrypt-route53
+    kind: ClusterIssuer
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: domain-management
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: external-dns
+      version: "7.2"
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+  values:
+    domainFilters:
+      - thewatergategroups.com
+    provider: aws 
+    aws:
+      region: eu-west-2
+      credentials:
+        accessKeyIDSecretRef:
+          name: domain-management-creds
+          key: aws_access_key_id
+        secretAccessKeySecretRef:
+          name: domain-management-creds
+          key: aws_secret_access_key
+    policy: sync

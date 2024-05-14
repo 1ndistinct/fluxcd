@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  annotations:
-    usedby: cert-manager
-  name: cert-manager

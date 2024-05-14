@@ -7,7 +7,7 @@ resources:
 - prometheus-community.yaml
 - pgadmin.yaml
 - pypi-server.yaml
-- redis.yaml
+- bitnami.yaml
 - rook-ceph.yaml
 - sealed-secrets.yaml
 - velero.yaml
