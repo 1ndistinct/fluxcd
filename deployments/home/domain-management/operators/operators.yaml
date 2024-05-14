@@ -32,9 +32,10 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+    provider: aws
+    txtOwnerId: Z061744026X1CUF71V2PH
     domainFilters:
       - thewatergategroups.com
-    provider: aws 
     aws:
       region: eu-west-2
       credentials:
