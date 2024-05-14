@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: domain-management-operators
+  name: domain-management-config
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: domain-management-creds
-  path: "./deployments/home/domain-management/operators"
+    - name: domain-management-operators
+  path: "./deployments/home/domain-management/config"
   sourceRef:
     kind: GitRepository
     name: flux-system
