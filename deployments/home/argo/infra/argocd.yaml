@@ -39,12 +39,26 @@ spec:
       retries: 1
       strategy: rollback
   values:
+    global:
+      domain: argocd.thewatergategroups.com
     server:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        extraTls:
+          - hosts:
+            - argocd.thewatergategroups.com
+            secretName: wildcard-watergate-tls
       service:
         type: ClusterIP
         servicePortHttps: 443
         servicePortHttp: 80
     configs:
+      params:
+        server.insecure: true
       cm: 
         admin.enabled: false
         url: https://argocd-server.argocd.svc.cluster.local
