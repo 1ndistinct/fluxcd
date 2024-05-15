@@ -23,7 +23,7 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: wildcard-watergate-certificate-apps
+  name: wildcard-watergate-certificate
   namespace: apps
 spec:
   secretName: wildcard-watergate-tls
@@ -44,7 +44,7 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: wildcard-watergate-certificate-argocd
+  name: wildcard-watergate-certificate
   namespace: argocd
 spec:
   secretName: wildcard-watergate-tls
