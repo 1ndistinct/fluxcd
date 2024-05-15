@@ -1,0 +1,18 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: mettalb-config
+  namespace: flux-system
+spec:
+  interval: 0m30s
+  dependsOn:
+    - name: mettalb-operators
+  path: "./deployments/home/mettalb/config"
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true # wait for all applied resources to become ready
+  timeout: 5m0s # give up waiting after three minutes
+  retryInterval: 0m30s # retry every two minutes on apply or waiting failures
+  prune: true # remove stale resources from cluster
+  force: true # enable this to recreate resources on immutable fields changes
