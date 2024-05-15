@@ -23,10 +23,10 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: wildcard-watergate-certificate
+  name: wildcard-watergate-certificate-apps
   namespace: apps
 spec:
-  secretName: wildcard-watergate-tls-apps
+  secretName: wildcard-watergate-tls
   duration: 2160h # 90 days
   renewBefore: 360h # 15 days
   commonName: '*.thewatergategroups.com'
