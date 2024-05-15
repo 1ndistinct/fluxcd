@@ -3,3 +3,5 @@ kind: Kustomization
 namespace: external-endpoint
 resources:
   - github.com/metallb/metallb/config/native?ref=v0.14.5
+  - metallb-iprange.yaml
+  - nginx.yaml
