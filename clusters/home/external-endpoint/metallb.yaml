@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 0m30s
-  path: "./deployments/home/metallb"
+  path: "./deployments/home/external-endpoint"
   sourceRef:
     kind: GitRepository
     name: flux-system
