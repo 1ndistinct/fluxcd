@@ -12,3 +12,4 @@ resources:
 - sealed-secrets.yaml
 - velero.yaml
 - cert-manager.yaml
+- nginx.yaml
