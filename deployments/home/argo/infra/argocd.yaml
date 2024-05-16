@@ -61,7 +61,7 @@ spec:
         servicePortHttp: 80
     configs:
       params:
-        server.insecure: false
+        server.insecure: true
       cm: 
         admin.enabled: false
         url: https://argocd.thewatergategroups.com
