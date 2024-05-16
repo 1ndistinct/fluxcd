@@ -15,6 +15,22 @@ spec:
         name: cgsimmons-charts
         namespace: flux-system
   values:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        nginx.ingress.kubernetes.io/rewrite-target: /
+        kubernetes.io/ingress.class: nginx
+      tls:
+      - hosts:
+        - pypi.thewatergategroups.com
+        secretName: wildcard-watergate-tls
+      hosts:
+      - host: pypi.thewatergategroups.com
+        paths:
+          - /
+
     auth:
       secretName: pypi-server
     pod:
