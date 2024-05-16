@@ -48,6 +48,7 @@ kind: Ingress
 metadata:
   name: pypi
   annotations:
+    external-dns.alpha.kubernetes.io/alias: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/rewrite-target: /
