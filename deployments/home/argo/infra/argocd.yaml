@@ -67,7 +67,7 @@ spec:
         url: https://argocd.thewatergategroups.com
         oidc.config: |
               name: Ciaran
-              issuer: http://authapi.apps.svc.cluster.local:8000
+              issuer: https://auth.thewatergategroups.com
               clientID: 94221717-e022-4d82-b90d-e83fece477c9
               clientSecret: $argocd-oidc-secret:oidc.ciaran.clientSecret
               requestedScopes:
