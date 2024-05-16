@@ -37,7 +37,6 @@ spec:
     domainFilters:
       - thewatergategroups.com
     aws:
-      preferCNAME: true
       region: eu-west-2
       credentials:
         accessKeyIDSecretRef:
