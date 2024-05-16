@@ -67,6 +67,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: pypi
+            name: pypi-server
             port:
               number: 80
