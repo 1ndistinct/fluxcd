@@ -61,10 +61,10 @@ spec:
         servicePortHttp: 80
     configs:
       params:
-        server.insecure: false
+        server.insecure: true
       cm: 
         admin.enabled: false
-        url: https://argocd-server.argocd.svc.cluster.local
+        url: https://argocd.thewatergategroups.com
         oidc.config: |
               name: Ciaran
               issuer: http://authapi.apps.svc.cluster.local:8000
