@@ -4,7 +4,7 @@ metadata:
   name: wireguard-udp
   namespace: external-endpoint
 data:
-  30500: "apps/wireguard:51820"
+  "31500": "apps/wireguard:51820"
 ---
 # nginx-ingress-helmrelease.yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
