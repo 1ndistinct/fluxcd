@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: pgadmin
+  name: apps-oidc-config
   namespace: flux-system
 spec:
   interval: 0m30s
   dependsOn:
-    - name: apps-oidc-config
-  path: "./deployments/home/apps/pgadmin"
+    - name: apps-namespace
+  path: "./deployments/home/apps/oidc-config"
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 0m30s
   dependsOn:
-    - name: apps-namespace
+    - name: apps-oidc-config
   path: "./deployments/home/apps/pypi"
   sourceRef:
     kind: GitRepository
