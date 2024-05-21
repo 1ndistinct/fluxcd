@@ -16,6 +16,7 @@ spec:
         namespace: flux-system
   values:
     controller:
+      allowSnippetAnnotations: true
       service:
         loadBalancerIP: 192.168.0.76
       replicaCount: 2
