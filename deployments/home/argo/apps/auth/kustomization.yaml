@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: argocd
 resources:
 - auth.yaml
+- oauth2-proxy.yaml
