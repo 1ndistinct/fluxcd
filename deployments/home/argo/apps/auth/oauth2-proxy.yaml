@@ -17,6 +17,163 @@ spec:
     - extract:
         key: /oauth2-proxy
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oauth2-proxy-templates
+  namespace: apps
+data:
+  sign_in.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign In</title>
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Favicon - Replace 'lock.svg' with the path to your lock icon image -->
+        <link rel="icon" href="path/to/your/lock.svg" type="image/svg+xml">
+        <!-- Font Awesome CDN for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- Custom CSS -->
+        <style>
+            body {
+                background-color: #f8f9fa; /* Light gray background */
+                font-family: 'Roboto', sans-serif; /* Use Roboto font */
+                overflow: hidden; /* Prevent scrolling */
+            }
+            .login-container {
+                margin-top: 0px; /* Increased margin-top */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .card {
+                background-color: #ffffff; /* White background */
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                padding: 20px; /* Added padding */
+            }
+            .person-icon {
+                font-size: 3rem;
+                color: #800080; /* Purple color for icon */
+                margin-bottom: 20px;
+            }
+            .card-title {
+                color: #343a40; /* Dark gray for title */
+                margin-bottom: 20px; /* Added margin-bottom */
+            }
+            .btn-primary {
+                background-color: #007bff; /* Primary color for login button */
+                border-color: #007bff; /* Border color for login button */
+            }
+            .btn-primary:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+                border-color: #0056b3; /* Darker border on hover */
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="row justify-content-center login-container">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-circle person-icon"></i>
+                        <h2 class="card-title">Sign In</h2>
+                        <form method="GET" action="/oauth2/start">
+                            <input type="hidden" name="rd" value="/" />
+                            <button type="submit" class="btn btn-primary btn-block">Sign in with OpenID Connect</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+
+  error.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Error</title>
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Favicon - Replace 'lock.svg' with the path to your lock icon image -->
+        <link rel="icon" href="path/to/your/lock.svg" type="image/svg+xml">
+        <!-- Font Awesome CDN for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- Custom CSS -->
+        <style>
+            body {
+                background-color: #f8f9fa; /* Light gray background */
+                font-family: 'Roboto', sans-serif; /* Use Roboto font */
+                overflow: hidden; /* Prevent scrolling */
+            }
+            .error-container {
+                margin-top: 0px; /* Increased margin-top */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .card {
+                background-color: #ffffff; /* White background */
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                padding: 20px; /* Added padding */
+            }
+            .error-icon {
+                font-size: 3rem;
+                color: #dc3545; /* Red color for icon */
+                margin-bottom: 20px;
+            }
+            .card-title {
+                color: #343a40; /* Dark gray for title */
+                margin-bottom: 20px; /* Added margin-bottom */
+            }
+            .btn-primary {
+                background-color: #007bff; /* Primary color for login button */
+                border-color: #007bff; /* Border color for login button */
+            }
+            .btn-primary:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+                border-color: #0056b3; /* Darker border on hover */
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="row justify-content-center error-container">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-exclamation-circle error-icon"></i>
+                        <h2 class="card-title">Error</h2>
+                        <p>An error occurred during the sign-in process. Please try again.</p>
+                        <a href="/" class="btn btn-primary btn-block">Go back to Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
