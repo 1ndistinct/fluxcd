@@ -183,6 +183,7 @@ spec:
   - https://github.com/1ndistinct/aws-resource-manager.git
   - https://github.com/1ndistinct/documentation.git
   # - https://github.com/1ndistinct/todo-ui.git
+  - https://github.com/thewatergategroups/benjamin.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
   - namespace: apps
