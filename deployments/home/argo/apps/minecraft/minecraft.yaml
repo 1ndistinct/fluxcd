@@ -9,6 +9,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/tekkit2
-    repoURL: 'https://github.com/1ndistinct/tekkit2.git'
+    repoURL: 'https://github.com/thewatergategroups/tekkit2.git'
     targetRevision: main
   project: apps

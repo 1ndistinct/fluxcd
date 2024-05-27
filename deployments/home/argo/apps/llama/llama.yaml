@@ -9,6 +9,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/llama
-    repoURL: 'https://github.com/1ndistinct/llama.git'
+    repoURL: 'https://github.com/thewatergategroups/llama.git'
     targetRevision: master
   project: apps

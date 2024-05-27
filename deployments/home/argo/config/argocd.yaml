@@ -98,7 +98,7 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/1ndistinct/authapi.git
+  url: https://github.com/thewatergategroups/authapi.git
 kind: Secret
 metadata:
   annotations:
@@ -113,7 +113,7 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/1ndistinct/llama.git
+  url: https://github.com/thewatergategroups/llama.git
 kind: Secret
 metadata:
   annotations:
@@ -127,7 +127,7 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/1ndistinct/aws-resource-manager.git
+  url: https://github.com/thewatergategroups/aws-resource-manager.git
 kind: Secret
 metadata:
   annotations:
@@ -141,7 +141,7 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/1ndistinct/tekkit2.git
+  url: https://github.com/thewatergategroups/tekkit2.git
 kind: Secret
 metadata:
   annotations:
@@ -155,7 +155,7 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/1ndistinct/documentation.git
+  url: https://github.com/thewatergategroups/documentation.git
 kind: Secret
 metadata:
   annotations:
@@ -195,13 +195,13 @@ spec:
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   # - https://github.com/1ndistinct/topical.git
-  - https://github.com/1ndistinct/llama.git
+  - https://github.com/thewatergategroups/llama.git
   - https://github.com/GipsyLogic/gipsyanalyser.git
   - https://github.com/GipsyLogic/looksrare.git
-  - https://github.com/1ndistinct/authapi.git
-  - https://github.com/1ndistinct/tekkit2.git
-  - https://github.com/1ndistinct/aws-resource-manager.git
-  - https://github.com/1ndistinct/documentation.git
+  - https://github.com/thewatergategroups/authapi.git
+  - https://github.com/thewatergategroups/tekkit2.git
+  - https://github.com/thewatergategroups/aws-resource-manager.git
+  - https://github.com/thewatergategroups/documentation.git
   # - https://github.com/1ndistinct/todo-ui.git
   - https://github.com/thewatergategroups/benjamin.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster

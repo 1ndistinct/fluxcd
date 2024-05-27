@@ -9,6 +9,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/documentation
-    repoURL: 'https://github.com/1ndistinct/documentation.git'
+    repoURL: 'https://github.com/thewatergategroups/documentation.git'
     targetRevision: main
   project: apps

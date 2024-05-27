@@ -9,6 +9,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/aws-resource-manager
-    repoURL: 'https://github.com/1ndistinct/aws-resource-manager.git'
+    repoURL: 'https://github.com/thewatergategroups/aws-resource-manager.git'
     targetRevision: main
   project: apps
