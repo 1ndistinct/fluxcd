@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authui
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: apps
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/authui
+    repoURL: 'https://github.com/thewatergategroups/authui.git'
+    targetRevision: main
+  project: apps
