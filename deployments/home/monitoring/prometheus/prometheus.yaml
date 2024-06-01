@@ -17,16 +17,16 @@ spec:
   values:
 
     grafana:
-      enabled: false
+      enabled: true
 
       # TODO: Integrate with SealedSecrets
-      adminPassword: "your-secure-password"
+      adminPassword: "UFta6ypg.qFK"
       # admin:
       #   existingSecret: grafana-admin-password
       #   existingSecretKey: password
 
       persistence:
-        enabled: false
+        enabled: true
         storageClassName: rook-cephfs
         accessModes: ["ReadWriteOnce"]
         size: "20Gi"
