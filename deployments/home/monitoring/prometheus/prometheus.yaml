@@ -17,11 +17,23 @@ spec:
   values:
 
     grafana:
+      enabled: true
+
+      # TODO: Integrate with SealedSecrets
+      adminPassword: "your-secure-password"
+      # admin:
+      #   existingSecret: grafana-admin-password
+      #   existingSecretKey: password
+
+      persistence:
+        enabled: true
+        storageClassName: "local-storage"
+        accessModes: ["ReadWriteOnce"]
+        size: "20Gi"
       additionalDataSources:
         - name: Loki
           type: loki
-          url: http://loki:3100
-          # Needed if loki auth is enabled
+          url: http://loki.monitoring.svc.cluster.local
           jsonData:
             httpHeaderName1: 'X-Scope-OrgID'
           secureJsonData:
