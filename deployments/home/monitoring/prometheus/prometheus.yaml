@@ -27,7 +27,7 @@ spec:
 
       persistence:
         enabled: true
-        storageClassName: "local-storage"
+        storageClassName: rook-cephfs
         accessModes: ["ReadWriteOnce"]
         size: "20Gi"
       additionalDataSources:
@@ -45,7 +45,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "local-storage"
+              storageClassName: rook-cephfs
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
