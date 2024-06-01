@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: '4.8.0'
+      version: '6.6.2'
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -18,8 +18,21 @@ spec:
     loki:
       auth_enabled: false
       commonConfig:
-        replication_factor: 1
+        replication_factor: 1  # non-distributed setup
       storage:
         type: 'filesystem'
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 72h
+    schema_config:
+      configs:
+        - from: 2020-10-24
+          store: boltdb-shipper
+          object_store: filesystem
+          schema: v11
+          index:
+            prefix: index_
+            period: 24h  # how often to create new index tables
     singleBinary:
       replicas: 1
