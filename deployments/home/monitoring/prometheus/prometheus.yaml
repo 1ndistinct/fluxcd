@@ -9,12 +9,13 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: '45.7.1'
+      version: '58.7.2'
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
   values:
+
     grafana:
       additionalDataSources:
         - name: Loki
@@ -25,3 +26,28 @@ spec:
             httpHeaderName1: 'X-Scope-OrgID'
           secureJsonData:
             httpHeaderValue1: '1'
+
+    prometheus:
+      prometheusSpec:
+        retention: "3d"  # Retain metrics for 3 days
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "local-storage"
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: "20Gi"
+
+    nodeExporter:
+      enabled: true
+    kubeStateMetrics:
+      enabled: true
+    # # Custom exporters can be added here
+    # additionalServiceMonitors:
+    #   - name: custom-exporter
+    #     selector:
+    #       matchLabels:
+    #         app: custom-exporter
+    #     endpoints:
+    #       - port: "metrics"
