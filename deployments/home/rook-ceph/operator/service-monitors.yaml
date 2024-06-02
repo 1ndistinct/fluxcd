@@ -7,9 +7,9 @@ spec:
   namespaceSelector:
     matchNames:
       - rook-ceph
-  selector:
-    matchLabels:
-      app: rook-ceph-exporter
+  # selector:
+  #   matchLabels:
+  #     app: rook-ceph-exporter
   endpoints:
     - port: ceph-exporter-http-metrics
       path: /metrics
@@ -27,9 +27,9 @@ spec:
   namespaceSelector:
     matchNames:
       - rook-ceph
-  selector:
-    matchLabels:
-      app: csi-metrics
+  # selector:
+  #   matchLabels:
+  #     app: csi-metrics
   endpoints:
     - port: csi-http-metrics
       path: /metrics
