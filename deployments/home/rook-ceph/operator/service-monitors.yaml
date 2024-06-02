@@ -2,11 +2,11 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: rook-ceph-exporter
-  namespace: rook-ceph-namespace
+  namespace: rook-ceph
 spec:
   namespaceSelector:
     matchNames:
-      - rook-ceph-namespace
+      - rook-ceph
   selector:
     matchLabels:
       app: rook-ceph-exporter
@@ -22,11 +22,11 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: csi-metrics
-  namespace: rook-ceph-namespace
+  namespace: rook-ceph
 spec:
   namespaceSelector:
     matchNames:
-      - rook-ceph-namespace
+      - rook-ceph
   selector:
     matchLabels:
       app: csi-metrics
