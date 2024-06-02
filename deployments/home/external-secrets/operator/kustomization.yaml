@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: external-secrets
 resources:
 - operator.yaml
+- service-monitors.yaml
