@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version:4. 1.1"
+      version: "4.10.1"
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -19,16 +19,12 @@ spec:
       allowSnippetAnnotations: true
       service:
         loadBalancerIP: 192.168.0.76
-        annotations:
-          prometheus.io/scrape: true
-          prometheus.io/port: 10254
-      replicaCount: 2 
+      replicaCount: 2
       metrics:
         enabled: true
-        service:
-          annotations:
-            prometheus.io/scrape: true
-            prometheus.io/port: 10254
-          type: ClusterIP
+        serviceMonitor:
+          enabled: true
+          additionalLabels:
+            release: prometheus
       admissionWebhooks:
         enabled: false
