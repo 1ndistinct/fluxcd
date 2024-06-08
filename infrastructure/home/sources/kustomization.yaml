@@ -13,4 +13,3 @@ resources:
 - velero.yaml
 - cert-manager.yaml
 - nginx.yaml
-- istio.yaml
