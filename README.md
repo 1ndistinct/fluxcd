@@ -2,6 +2,12 @@
 
 ## Description
 
+To reconcile manually
+
+```bash
+flux reconcile kustomization argocd-config -n flux-system
+```
+
 ### Installation
 
 [Flux CD Installation Guide](https://fluxcd.io/flux/installation/)
