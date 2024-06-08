@@ -104,7 +104,7 @@ spec:
 #     hosts:
 #     - "thewatergategroups.com"
 
-----
+---
 
 # Implement retries, circuit breakers, and timeouts to improve the resiliency of your service communications.
 # apiVersion: networking.istio.io/v1beta1
