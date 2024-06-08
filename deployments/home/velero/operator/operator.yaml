@@ -37,6 +37,13 @@ data:
             region: eu-west-2
     credentials:
       existingSecret: velero-credentials
+    metrics:
+      enabled: true
+      scrapeInterval: 30s
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus
     deployNodeAgent: true
     schedules:
       weekly-backup:
