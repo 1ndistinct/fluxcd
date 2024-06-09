@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: istio
 resources:
 - istio.yaml
-
-kustomization/istio                           	                 	False    	False  	kustomize build failed: accumulating resources: accumulation err='accumulating resources from 'istio.yaml': invalid document separator: ----': must build at directory: '/tmp/kustomization-2547495740/deployments/home/istio/istio.yaml': file is not directory	
