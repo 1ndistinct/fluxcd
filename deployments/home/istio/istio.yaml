@@ -21,6 +21,7 @@ metadata:
   name: istio-operator
   namespace: istio-system
 spec:
+  interval: 1m
   chart:
     spec:
       chart: istio-operator
