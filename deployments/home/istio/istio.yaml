@@ -24,6 +24,7 @@ spec:
   chart:
     spec:
       chart: istio-operator
+      interval: 1m
       version: "1.13.3"
       sourceRef:
         kind: HelmRepository
