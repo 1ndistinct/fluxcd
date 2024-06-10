@@ -1,0 +1,45 @@
+name: update-flux
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  components:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup Flux CLI
+        uses: fluxcd/flux2/action@main
+
+      - name: Check for updates
+        id: update
+        run: |
+          set -e  # Exit on any error
+
+          # Install Flux and export configuration
+          flux install --export > ./clusters/production/flux-system/gotk-components.yaml
+
+          # Capture the version of Flux
+          VERSION=$(flux -v | grep -oP '(?<=version: )[^ ]+')
+          echo "flux_version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-flux
+          commit-message: Update Flux to ${{ steps.update.outputs.flux_version }}
+          title: Update Flux to ${{ steps.update.outputs.flux_version }}
+          body: |
+            This PR updates Flux to version ${{ steps.update.outputs.flux_version }}.
+
+          # Ensure PR is only created if there are changes
+          commit-user-name: github-actions
+          commit-user-email: github-actions@github.com
+          path: ./clusters/production/flux-system/gotk-components.yaml
