@@ -16,6 +16,8 @@ jobs:
 
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
+        with:
+            version: 'latest' # latest stable
 
       - name: Check for updates
         id: update
