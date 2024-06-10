@@ -28,7 +28,7 @@ jobs:
           flux install --export > ./clusters/home/flux-system/gotk-components.yaml
 
           # Capture the version of Flux
-          VERSION=$(flux -v | grep -oP '(?<=version: )[^ ]+')
+          VERSION=$(flux -v | awk '{print $3}')
           echo "flux_version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
