@@ -23,7 +23,7 @@ jobs:
           set -e  # Exit on any error
 
           # Install Flux and export configuration
-          flux install --export > ./clusters/production/flux-system/gotk-components.yaml
+          flux install --export > ./clusters/home/flux-system/gotk-components.yaml
 
           # Capture the version of Flux
           VERSION=$(flux -v | grep -oP '(?<=version: )[^ ]+')
@@ -42,4 +42,4 @@ jobs:
           # Ensure PR is only created if there are changes
           commit-user-name: github-actions
           commit-user-email: github-actions@github.com
-          path: ./clusters/production/flux-system/gotk-components.yaml
+          path: ./clusters/home/flux-system/gotk-components.yaml
