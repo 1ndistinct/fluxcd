@@ -35,11 +35,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-flux
           commit-message: Update Flux to ${{ steps.update.outputs.flux_version }}
+          branch-suffix: timestamp
+        #   assignees:
+        #   reviewers:
           title: Update Flux to ${{ steps.update.outputs.flux_version }}
           body: |
             This PR updates Flux to version ${{ steps.update.outputs.flux_version }}.
-
-          # Ensure PR is only created if there are changes
-          commit-user-name: github-actions
-          commit-user-email: github-actions@github.com
-          path: ./clusters/home/flux-system/gotk-components.yaml
+          add-paths: ./clusters/home/flux-system/gotk-components.yaml
