@@ -207,7 +207,6 @@ spec:
             encode_state = true
             skip_jwt_bearer_tokens = true
             oidc_issuer_url = "https://auth.thewatergategroups.com"
-            oidc_extra_audience = [ "https://auth.thewatergategroups.com" ]
             redirect_url = "https://oauth2.thewatergategroups.com/oauth2/callback"
             email_domains = [ "*" ]
             code_challenge_method = "S256"
@@ -218,6 +217,8 @@ spec:
         extraArgs:
           - --whitelist-domain=.thewatergategroups.com
           - --cookie-domain=.thewatergategroups.com
+          - --oidc-extra-audience=https://auth.thewatergategroups.com
+          
         extraVolumes:
           - name: templates
             configMap:
