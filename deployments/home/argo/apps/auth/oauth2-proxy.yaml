@@ -198,18 +198,27 @@ spec:
             cookieSecret: "cookieSecret"
           configFile: |-
             provider = "oidc"
+            whitelist_domain = ".thewatergategroups.com"
+            cookie_domain = ".thewatergategroups.com"
+            cookie_expire = 0
+            cookie_httponly = true
+            cookie_secure = true
+            force_https = true
+            insecure_oidc_skip_nonce = false
+            pass_authorization_header = true
+            set_authorization_header = true
+            encode_state = true
+            skip_jwt_bearer_tokens = true
+
             oidc_issuer_url = "https://auth.thewatergategroups.com"
             redirect_url = "https://oauth2.thewatergategroups.com/oauth2/callback"
             email_domains = [ "*" ]
-            set_authorization_header = true
+            code_challenge_method = S256
             set_xauthrequest = true
             cookie_secure = true
             custom_sign_in_logo = "-"
             custom_templates_dir = "/etc/oauth2-proxy/templates"
             skip_provider_button = true
-        extraArgs:
-          - --whitelist-domain=.thewatergategroups.com
-          - --cookie-domain=.thewatergategroups.com
         extraVolumes:
           - name: templates
             configMap:
