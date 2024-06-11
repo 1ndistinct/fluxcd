@@ -214,7 +214,6 @@ spec:
             email_domains = [ "*" ]
             code_challenge_method = "S256"
             set_xauthrequest = true
-            cookie_secure = true
             custom_sign_in_logo = "-"
             custom_templates_dir = "/etc/oauth2-proxy/templates"
             skip_provider_button = true
