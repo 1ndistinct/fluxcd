@@ -201,7 +201,6 @@ spec:
             cookie_expire = 0
             cookie_httponly = true
             cookie_secure = true
-            force_https = true
             insecure_oidc_skip_nonce = false
             pass_authorization_header = true
             set_authorization_header = true
