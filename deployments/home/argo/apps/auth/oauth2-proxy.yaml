@@ -198,8 +198,6 @@ spec:
             cookieSecret: "cookieSecret"
           configFile: |-
             provider = "oidc"
-            whitelist_domain = ".thewatergategroups.com"
-            cookie_domain = ".thewatergategroups.com"
             cookie_expire = 0
             cookie_httponly = true
             cookie_secure = true
@@ -217,6 +215,9 @@ spec:
             custom_sign_in_logo = "-"
             custom_templates_dir = "/etc/oauth2-proxy/templates"
             skip_provider_button = true
+        extraArgs:
+          - --whitelist-domain=.thewatergategroups.com
+          - --cookie-domain=.thewatergategroups.com
         extraVolumes:
           - name: templates
             configMap:
