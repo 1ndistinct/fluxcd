@@ -4,3 +4,4 @@ namespace: istio
 resources:
 - namespace.yaml
 - istio.yaml
+- operator.yaml
