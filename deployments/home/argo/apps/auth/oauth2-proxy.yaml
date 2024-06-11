@@ -209,11 +209,10 @@ spec:
             set_authorization_header = true
             encode_state = true
             skip_jwt_bearer_tokens = true
-
             oidc_issuer_url = "https://auth.thewatergategroups.com"
             redirect_url = "https://oauth2.thewatergategroups.com/oauth2/callback"
             email_domains = [ "*" ]
-            code_challenge_method = S256
+            code_challenge_method = "S256"
             set_xauthrequest = true
             cookie_secure = true
             custom_sign_in_logo = "-"
