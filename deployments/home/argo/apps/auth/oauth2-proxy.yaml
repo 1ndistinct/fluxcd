@@ -205,7 +205,7 @@ spec:
             pass_authorization_header = true
             set_authorization_header = true
             encode_state = true
-            skip_jwt_bearer_tokens = false
+            skip_jwt_bearer_tokens = true
             oidc_issuer_url = "https://auth.thewatergategroups.com"
             redirect_url = "https://oauth2.thewatergategroups.com/oauth2/callback"
             email_domains = [ "*" ]
