@@ -3,4 +3,5 @@ kind: Kustomization
 namespace: monitoring
 resources:
 - prometheus.yaml
+- kube-state-metrics-config.yaml
 - ceph-alert-rules.yaml
