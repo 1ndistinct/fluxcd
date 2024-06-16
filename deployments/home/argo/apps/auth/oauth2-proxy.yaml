@@ -198,7 +198,7 @@ spec:
             cookieSecret: "cookieSecret"
           configFile: |-
             provider = "oidc"
-            cookie_expire = 0
+            cookie_expire = 24h0m0s
             cookie_httponly = true
             cookie_secure = true
             insecure_oidc_skip_nonce = false
