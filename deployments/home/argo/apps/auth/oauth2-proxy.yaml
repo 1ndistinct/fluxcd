@@ -215,6 +215,7 @@ spec:
             skip_provider_button = true
         extraArgs:
           - --cookie-name=oauth2-session
+          - --skip-auth-preflight=true
           - --cookie-expire=24h
           - --whitelist-domain=.thewatergategroups.com
           - --cookie-domain=.thewatergategroups.com
