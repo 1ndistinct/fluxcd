@@ -198,7 +198,6 @@ spec:
             cookieSecret: "cookieSecret"
           configFile: |-
             provider = "oidc"
-            cookie_expire = 24h0m0s
             cookie_httponly = true
             cookie_secure = true
             insecure_oidc_skip_nonce = false
@@ -215,6 +214,8 @@ spec:
             custom_templates_dir = "/etc/oauth2-proxy/templates"
             skip_provider_button = true
         extraArgs:
+          - --cookie-name=oauth2-session
+          - --cookie-expire=24h
           - --whitelist-domain=.thewatergategroups.com
           - --cookie-domain=.thewatergategroups.com
           - --oidc-extra-audience=https://auth.thewatergategroups.com
