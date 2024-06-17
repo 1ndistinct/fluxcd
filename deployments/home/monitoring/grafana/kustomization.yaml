@@ -4,3 +4,22 @@ namespace: monitoring
 resources:
 - loki.yaml
 - promtail.yaml
+
+---
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - podmonitor.yaml
+configMapGenerator:
+  - name: flux-grafana-dashboards
+    files:
+      - dashboards/flux/control-plane.json
+      - dashboards/flux/cluster.json
+      - dashboards/flux/logs.json
+    options:
+      labels:
+        grafana_dashboard: "1"
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/component: monitoring
