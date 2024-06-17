@@ -34,5 +34,11 @@ spec:
           index:
             prefix: index_
             period: 24h  # how often to create new index tables
+    write:
+      replicas: 0
+    read:
+      replicas: 0
+    backend:
+      replicas: 0
     singleBinary:
       replicas: 1
