@@ -25,7 +25,7 @@ spec:
         table_manager:
           retention_deletes_enabled: true
           retention_period: 72h
-      schema_config:
+      schemaConfig:
         configs:
           - from: 2020-10-24
             store: boltdb-shipper
