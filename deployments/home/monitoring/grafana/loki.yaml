@@ -16,29 +16,53 @@ spec:
         namespace: flux-system
   values:
     loki:
-      auth_enabled: false
       commonConfig:
-        replication_factor: 1  # non-distributed setup
+        replication_factor: 1
       storage:
         type: 'filesystem'
-      config:
-        table_manager:
-          retention_deletes_enabled: true
-          retention_period: 72h
       schemaConfig:
         configs:
-          - from: 2020-10-24
-            store: boltdb-shipper
-            object_store: filesystem
-            schema: v11
-            index:
-              prefix: index_
-              period: 24h  # how often to create new index tables
-    write:
-      replicas: 0
+        - from: "2024-01-01"
+          store: tsdb
+          index:
+            prefix: loki_index_
+            period: 24h
+          object_store: filesystem # we're storing on filesystem so there's no real persistence here.
+          schema: v13
+
+    deploymentMode: SingleBinary
+    singleBinary:
+      replicas: 1
     read:
       replicas: 0
     backend:
       replicas: 0
-    singleBinary:
-      replicas: 1
+    write:
+      replicas: 0
+    # loki:
+    #   auth_enabled: false
+    #   commonConfig:
+    #     replication_factor: 1  # non-distributed setup
+    #   storage:
+    #     type: 'filesystem'
+    #   config:
+    #     table_manager:
+    #       retention_deletes_enabled: true
+    #       retention_period: 72h
+    # schemaConfig:
+    #   configs:
+    #     - from: 2020-10-24
+    #       store: boltdb-shipper
+    #       object_store: filesystem
+    #       schema: v11
+    #       index:
+    #         prefix: index_
+    #         period: 24h  # how often to create new index tables
+    # write:
+    #   replicas: 0
+    # read:
+    #   replicas: 0
+    # backend:
+    #   replicas: 0
+    # singleBinary:
+    #   replicas: 1
