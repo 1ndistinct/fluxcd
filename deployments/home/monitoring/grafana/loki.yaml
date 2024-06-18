@@ -46,3 +46,8 @@ spec:
       scrapeTimeout: 10s
       additionalLabels:
         release: prometheus
+
+    config:
+      table_manager:
+        retention_deletes_enabled: true
+        retention_period: 720h
