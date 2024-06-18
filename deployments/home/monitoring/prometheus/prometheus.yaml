@@ -65,6 +65,10 @@ spec:
             gnetId: 11074
             revision: 1
             datasource: Loki
+          nginx-ingress-controller:
+            gnetId: 9614
+            revision: 1
+            datasource: Prometheus
 
 
     nodeExporter:
