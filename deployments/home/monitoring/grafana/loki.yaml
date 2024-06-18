@@ -39,3 +39,10 @@ spec:
       replicas: 0
     write:
       replicas: 0
+
+    serviceMonitor:
+      enabled: true
+      interval: 15s
+      scrapeTimeout: 10s
+      additionalLabels:
+        release: prometheus
