@@ -59,6 +59,13 @@ spec:
               resources:
                 requests:
                   storage: "20Gi"
+      dashboards:
+        default:
+          loki-overview:
+            gnetId: 11074
+            revision: 1
+            datasource: Loki
+
 
     nodeExporter:
       enabled: true
