@@ -21,7 +21,6 @@ spec:
     valuesKey: kube-state-metrics-config.yaml
 
   values:
-
     grafana:
       enabled: true
 
@@ -36,6 +35,7 @@ spec:
         storageClassName: rook-cephfs
         accessModes: ["ReadWriteOnce"]
         size: "20Gi"
+
       additionalDataSources:
         - name: Loki
           type: loki
@@ -44,6 +44,10 @@ spec:
             httpHeaderName1: 'X-Scope-OrgID'
           secureJsonData:
             httpHeaderValue1: '1'
+
+      sidecar:
+        dashboards:
+          enabled: true
 
     prometheus:
       prometheusSpec:
@@ -59,30 +63,22 @@ spec:
               resources:
                 requests:
                   storage: "20Gi"
-      dashboards:
-        default:
-          loki-overview:
-            gnetId: 11074
-            revision: 1
-            datasource: Loki
-          nginx-ingress-controller:
-            gnetId: 9614
-            revision: 1
-            datasource: Prometheus
-          cert-manager:
-            gnetId: 9628
-            revision: 1
-            datasource: Prometheus
 
     nodeExporter:
       enabled: true
     kubeStateMetrics:
       enabled: true
-    # # Custom exporters can be added here
-    # additionalServiceMonitors:
-    #   - name: custom-exporter
-    #     selector:
-    #       matchLabels:
-    #         app: custom-exporter
-    #     endpoints:
-    #       - port: "metrics"
+
+    dashboards:
+      loki-overview:
+        gnetId: 11074
+        revision: 1
+        datasource: Loki
+      nginx-ingress-controller:
+        gnetId: 9614
+        revision: 1
+        datasource: Prometheus
+      cert-manager:
+        gnetId: 9628
+        revision: 1
+        datasource: Prometheus
