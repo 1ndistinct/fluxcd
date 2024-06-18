@@ -54,3 +54,6 @@ spec:
           name: domain-management-creds
           key: aws_secret_access_key
     policy: sync
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "7979"  # Default port for external-dns metrics
