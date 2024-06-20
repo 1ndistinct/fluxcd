@@ -14,7 +14,7 @@ spec:
       namespace: argocd
     type: Opaque
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: argocd
@@ -64,7 +64,7 @@ spec:
     configs:
       params:
         server.insecure: true
-      cm: 
+      cm:
         admin.enabled: false
         url: https://argocd.thewatergategroups.com
         oidc.config: |

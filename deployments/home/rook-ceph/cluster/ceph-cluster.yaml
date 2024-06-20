@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: rook-ceph-cluster
@@ -33,15 +33,15 @@ spec:
         enabled: false
       crashCollector:
         disable: true
-      storage: 
+      storage:
         useAllNodes: true
         useAllDevices: true
       resources:
         mon:
-          limits: 
+          limits:
             cpu: 1000m
             memory: 750Mi
-          requests: 
+          requests:
             cpu: 1000m
             memory: 750Mi
         osd:
@@ -54,7 +54,7 @@ spec:
     cephObjectStores: {}
     cephBlockPools: {}
     cephFileSystems:
-      - name: filesystem 
+      - name: filesystem
         spec:
           metadataPool:
             replicated:

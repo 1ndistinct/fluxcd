@@ -47,10 +47,10 @@ spec:
       name: pgadmin-authapi-config
       namespace: apps
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: pgadmin  
+  name: pgadmin
   namespace: apps
 spec:
   releaseName: pgadmin
@@ -72,5 +72,5 @@ spec:
         configMap: pgadmin-config
     persistentVolume:
       enabled: true
-    envVarsFromSecrets: 
+    envVarsFromSecrets:
       - pgadmin-authapi-config

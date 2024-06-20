@@ -1,7 +1,7 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: pypi-server  
+  name: pypi-server
   namespace: apps
 spec:
   releaseName: pypi-server
@@ -18,7 +18,7 @@ spec:
     auth:
       secretName: pypi-server
     pod:
-      securityContext: 
+      securityContext:
         fsGroup: 0
         runAsUser: 0
         runAsGroup: 0
