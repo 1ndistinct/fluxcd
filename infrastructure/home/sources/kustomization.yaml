@@ -14,3 +14,4 @@ resources:
 - cert-manager.yaml
 - nginx.yaml
 - istio.yaml
+- capacitor.yaml
