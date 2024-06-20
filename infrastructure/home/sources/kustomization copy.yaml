@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- argocd.yaml
+- external-secrets.yaml
+- grafana.yaml
+- prometheus-community.yaml
+- pgadmin.yaml
+- pypi-server.yaml
+- bitnami.yaml
+- rook-ceph.yaml
+- sealed-secrets.yaml
+- velero.yaml
+- cert-manager.yaml
+- nginx.yaml
+- istio.yaml
+- capacitor.yaml
