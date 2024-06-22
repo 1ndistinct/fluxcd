@@ -112,14 +112,14 @@ type: Opaque
 apiVersion: v1
 stringData:
   type: git
-  url: https://github.com/thewatergategroups/authui.git
+  url: https://github.com/thewatergategroups/adminui.git
 kind: Secret
 metadata:
   annotations:
     managed-by: argocd.argoproj.io
   labels:
     argocd.argoproj.io/secret-type: repository
-  name: authui
+  name: adminui
   namespace: argocd
 type: Opaque
 ---
@@ -212,7 +212,7 @@ spec:
   - https://github.com/GipsyLogic/gipsyanalyser.git
   - https://github.com/GipsyLogic/looksrare.git
   - https://github.com/thewatergategroups/authapi.git
-  - https://github.com/thewatergategroups/authui.git
+  - https://github.com/thewatergategroups/adminui.git
   - https://github.com/thewatergategroups/tekkit2.git
   - https://github.com/thewatergategroups/aws-resource-manager.git
   - https://github.com/thewatergategroups/documentation.git
