@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 0m30s
-  path: "./deployments/home/istio"
+  path: "./deployments/home/istio/deployment"
   sourceRef:
     kind: GitRepository
     name: flux-system
