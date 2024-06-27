@@ -7,7 +7,7 @@ spec:
   interval: 0m30s
   dependsOn:
     - name: mon-namespace
-  path: "./deployments/home/monitoring/metrics-sever"
+  path: "./deployments/home/monitoring/metrics-server"
   sourceRef:
     kind: GitRepository
     name: flux-system
