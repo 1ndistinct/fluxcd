@@ -17,3 +17,4 @@ resources:
 - capacitor.yaml
 - metrics-server.yaml
 - keda.yaml
+- kube-web-ui-dashboard.yaml
