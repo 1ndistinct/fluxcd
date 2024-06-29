@@ -18,3 +18,4 @@ resources:
 - metrics-server.yaml
 - keda.yaml
 - kube-web-ui-dashboard.yaml
+- polaris.yaml
