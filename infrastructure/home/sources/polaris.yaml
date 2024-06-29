@@ -4,4 +4,4 @@ metadata:
   name: polaris-repo
   namespace: flux-system
 spec:
-  url: https://fairwindsops.github.io/polaris/
+  url: https://charts.fairwinds.com/stable
