@@ -4,3 +4,4 @@ resources:
 - namespace.yaml
 - helm-release.yaml
 - service-account.yaml
+- cluster-admin-role-binding.yaml
