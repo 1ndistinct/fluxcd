@@ -17,6 +17,23 @@ spec:
     dashboard:
       enable: true
     webhook:
-      enable: true
+      enable: false # Disable webhook for admission controller
     rbac:
       create: true
+    serviceAccount:
+      create: true
+      name: polaris
+    audit:
+      config:
+        exemptNamespaces:
+          - kube-system
+          - polaris
+    scanner:
+      intervalSeconds: 300
+      # excludeChecks: # Example
+      #   - "hostNetwork"
+      #   - "hostPID"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
