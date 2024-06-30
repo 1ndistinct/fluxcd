@@ -5,3 +5,4 @@ resources:
 - dashboard.yaml
 - service-account.yaml
 - cluster-admin-role-binding.yaml
+- auth-token-secret.yaml
