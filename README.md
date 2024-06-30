@@ -145,3 +145,53 @@ This guide provides steps to access the Grafana dashboard/Prometheus running on 
 
 3. Access Prometheus at `http://localhost:3001`
 +++
+
+#### Polaris
+
+Polaris is an tool designed to enforce best practices in Kubernetes configurations. It runs audits on your Kubernetes clusters to ensure they are using best practices, helping to improve the security, efficiency, and reliability of your deployments.
+
+**Why it is useful:**
+
+Polaris helps identify configuration issues that can affect the stability and performance of your Kubernetes applications. By providing actionable insights, it allows teams to proactively address potential problems, ensuring a more robust and secure environment.
+
+**Accessing Polaris Dashboard:**
+
+1. Port forward the Polaris dashboard service:
+
+    ```bash
+    kubectl port-forward svc/polaris-dashboard 8080:80 -n polaris
+    ```
+
+2. Create an SSH tunnel:
+
+    ```bash
+    ssh -L 8080:localhost:8080 username@remote-server
+    ```
+
+3. Access Polaris Dashboard at `http://localhost:8080`
+
+#### Kubernetes Dashboard
+
+The Kubernetes Dashboard is a web-based UI for managing Kubernetes clusters. It provides an overview of the cluster’s resources and allows users to deploy containerized applications, troubleshoot, and manage cluster resources.
+
+**Why it is useful:**
+
+The Kubernetes Dashboard simplifies cluster management by providing an intuitive interface to monitor and manage resources, view logs, and troubleshoot issues without needing to use the command line.
+
+**Accessing Kubernetes Dashboard:**
+
+1. Port forward the Kubernetes Dashboard service:
+
+    ```bash
+    kubectl port-forward svc/kubernetes-dashboard 8001:443 -n kubernetes-dashboard
+    ```
+
+2. Create an SSH tunnel:
+
+    ```bash
+    ssh -L 8001:localhost:8001 username@remote-server
+    ```
+
+3. Access Kubernetes Dashboard at `https://localhost:8001`
+
+4. Use the Kubernetes Dashboard to manage and monitor your cluster, deploy applications, and troubleshoot issues.
